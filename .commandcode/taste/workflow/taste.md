@@ -5,6 +5,9 @@
 - Measures or inspects the real reference/source rather than guessing whenever inspection is possible. Confidence: 0.85
 - Explicitly marks values that cannot be reliably determined as UNKNOWN instead of inventing them. Confidence: 0.85
 
+## Version control & git
+- Pushes to GitHub over HTTPS rather than SSH. Confidence: 0.7
+
 ## Verification
 - Does not declare a goal complete until it is verified end-to-end — production build succeeds, no critical console/runtime errors, no obvious layout or overflow bugs — rather than stopping at a working MVP. Confidence: 0.85
 - Documents remaining known deviations and limitations in writing rather than silently ignoring them. Confidence: 0.85
