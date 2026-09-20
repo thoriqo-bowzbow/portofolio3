@@ -8,6 +8,173 @@ It also implements the **centralized ScrollTrigger registration** the same audit
 pass discovered was missing, which was a prerequisite: without it, no scroll-linked
 tween in this repository could run.
 
+> ## ⚠️ CORRECTION — the rate, the mobile behaviour and the anchoring were all wrong
+>
+> **This section supersedes §1.2, §2.1, §2.2, §4.1 and §4.3 below.** Those sections
+> describe the first implementation, which used `−speed / 45` on every viewport.
+> That was wrong on all three counts and has been corrected. The superseded sections
+> are kept so the reasoning trail stays intact, but **do not read them as the
+> current behaviour.**
+>
+> Corrections 1 and 2 below are separate defects found at different times. 1 is the
+> rule itself; 2 is the measurement that feeds it — the rule was right on paper and
+> still produced wrong offsets on screen.
+>
+> ### Correction 1 — the rule
+>
+> **1. The rate was 4.5× too small.** The original implementation used
+> `−speed / 45`, taken from `FINAL_FIDELITY_AUDIT.md`. The audit had derived that
+> constant by dividing one layer's travel by a recorded `scrollY` of 1620 — but the
+> real scroll offset at that moment was 360. `1620 / 360 = 4.5`, and `45 / 10 = 4.5`,
+> so the audit's constant came out exactly 4.5× too small. This document's own §4.1
+> identified the error but the specified value was implemented anyway, because the
+> task named the audit authoritative. The live measurement is `−speed / 10`.
+>
+> **2. Parallax runs on desktop only.** The first implementation enabled it at every
+> viewport. The reference does not: sweeping nine widths, the hero title reads
+> `−287.5` at 1024px with native scroll pinned at 0, and `0` at 1023px with native
+> scroll at 2100. The switch is exactly at **1024px**.
+>
+> ### The corrected rule
+>
+> ```
+> translateY per px scrolled = −speed / 10        (min-width: 1024px only)
+> ```
+>
+> | layer | speed | rate |
+> |---|---|---|
+> | hero title | 8 | −0.800 |
+> | intro card | 2 | −0.200 |
+> | story numeral | 6 | −0.600 |
+> | story portrait | 10 | −1.000 |
+> | story title | 0.5 | −0.050 |
+> | story description | 2 | −0.200 |
+> | story actions | 0.5 | −0.050 |
+>
+> ### Anchoring
+>
+> A single rate is not enough — the layers are not all anchored in the same place,
+> and driving them all from the hero's top would fling the story layers far above
+> their own blocks.
+>
+> - **Title and description** are anchored at the hero's top and saturate after one
+>   viewport. At a 900px viewport that produces `−720` and `−180`, against the
+>   reference's measured `−717.83` and `−179.46` — within 0.3%.
+> - **Story layers** are anchored where their own centre crosses the viewport
+>   centre, and saturate half a viewport either side. That gives ±450 for the
+>   portrait at a 900px viewport, against the reference's measured ±428
+>   (`+479` on approach, `−377` on exit).
+>
+> The title and description are therefore **not** constant offsets. The audit's
+> `−718.39` / `−179.60` are the *saturated end states*, sampled after the motion had
+> already frozen; `−718.39 / 8 = −179.60 / 2 = −89.8` is the giveaway that both
+> scale with speed.
+>
+> ### Correction 2 — the measurement bug that broke the anchoring
+>
+> The rule above was in place, but the story layers did not follow it. The
+> anchoring was measured from the wrong thing, and it took a re-run of the
+> verification to catch it.
+>
+> **What was wrong.** `measureLayers` read `getBoundingClientRect()` on elements
+> that already carried the `y` we had written to them. A rect reports the element
+> *after* its transform, so every refresh folded the current offset into the stored
+> anchor — and the anchor then moved the offset again. Separately, the window
+> length was cached at refresh time, so a viewport whose height changed without a
+> refresh firing left the layers clamped against the *previous* viewport's
+> boundaries.
+>
+> **Evidence — identical viewport, identical scroll, different result.** At
+> 1440×900, `scrollY 1345`, before and after a resize out to 1920×1080 and back:
+>
+> ```
+>                             1440×900, scrollY 1345
+>                  before resize      after resize       correct
+>   title                −720              −864            −720
+>   desc                 −180              −216            −180
+>   countImg             +450              +540            +75
+> ```
+>
+> `−864` is `−0.8 × 1080`: the 1080px viewport's saturation value, still being
+> applied on a 900px viewport. The story layers were the same class of error in the
+> other direction — pinned against one end of their window, crossing to the other
+> end abruptly rather than tracking scroll. At 1440×900 and `scrollY 0` the same
+> layer read `+284.5` in one run and `+450` in another, which is not reproducible
+> behaviour.
+>
+> **The fix.** `composables/useHeroParallax.ts` now:
+>
+> 1. subtracts the applied `y` before measuring, so the stored value is layout and
+>    not layout-plus-current-offset;
+> 2. stores only the layer's centre **relative to the hero's top**, which is the
+>    space `apply` already receives its scroll value in;
+> 3. derives both the anchor and the window from the **live** `window.innerHeight`
+>    inside `apply`, so the two viewport-dependent quantities in the rule cannot go
+>    stale between refreshes.
+>
+> This is a fix to how the rule is measured, not a change to the rule. No
+> breakpoint, speed, saturation window or DOM structure moved.
+>
+> **After the fix**, at the same 1440×900 / `scrollY 1345`: title `−720`,
+> desc `−180`, `countNum` `0`, `countImg` `+75` — and the same values before and
+> after the resize round trip. `countNum` at exactly `0` is the anchor rule working:
+> the numeral sits at its layout position at the moment its centre crosses the
+> viewport centre.
+>
+> ### Mobile
+>
+> Below 1024px the composable creates no triggers at all, via
+> `gsap.matchMedia('(min-width: 1024px)')`, so every layer keeps its layout
+> transform and crossing the breakpoint in either direction rebuilds cleanly. The
+> P0 video scrub is **not** affected — it is a separate mechanism, and it still
+> runs on mobile with the 540p variant.
+>
+> ### Final verification
+>
+> Rate measured from runtime transforms across the linear span of each layer's
+> travel:
+>
+> | viewport | title | desc | countNum | countImg | infoTitle | infoDesc | infoActions | result |
+> |---|---|---|---|---|---|---|---|---|
+> | 1366×768 | −0.8000 | −0.2000 | −0.6000 | −1.0000 | −0.0500 | −0.2000 | −0.0500 | all ok |
+> | 1440×900 | −0.8000 | −0.2000 | −0.6000 | −1.0000 | −0.0500 | −0.2000 | −0.0500 | all ok |
+> | 1920×1080 | −0.8000 | −0.2000 | −0.6000 | −1.0000 | −0.0500 | −0.2000 | −0.0500 | all ok |
+> | 390×844 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | no parallax |
+>
+> Saturation scales with the viewport as it should: the title freezes at `−614.4`
+> at 768px tall, `−720` at 900px, and `−864` at 1080px — exactly `−0.8 × viewport`.
+>
+> The story layers track rather than pin. Each passes through zero at its own anchor
+> and saturates half a viewport either side, so the amplitude scales with the
+> viewport too:
+>
+> | viewport | `countNum` travel | zero crossing | `countImg` travel |
+> |---|---|---|---|
+> | 1366×768 | `+230.4 … −230.4` | between 768 and 1152 | `+384 … −384` |
+> | 1440×900 | `+270 … −270` | `scrollY 1345` | `+450 … −450` |
+> | 1920×1080 | `+324 … −324` | between 1080 and 1620 | `+540 … −540` |
+> | 390×844 | `0` | not applicable | `0` |
+>
+> Reduced motion: at 1440×900 with `prefers-reduced-motion: reduce` forced, all
+> seven layers read `0` at both `scrollY 0` and `scrollY 3600` (hero progress 1) —
+> no triggers are created at all. The P0 video is skipped independently, as designed
+> (`currentTime 0`, `duration null`, `opacity 0`).
+>
+> Regression checks after the fix: `npm run typecheck` clean and `npm run build`
+> succeeds (client, SSR and Nitro); `npm run audit:responsive` **8/8 clean** — no
+> horizontal overflow and 0 overflowing elements at all eight viewports, with
+> section heights unchanged from the pre-parallax run (1440×900 still reports
+> `about:2995` / `contact:1139`, the values the typography pass recorded);
+> **0 page errors and 0 console warnings**, with no ScrollTrigger messages; the
+> loader still renders its odometer and dismisses on schedule; the P0 video still
+> scrubs (`currentTime 7.94` of 8, `paused: true`, `opacity: 1` at the end of the
+> hero range); the gallery and testimonial images remain static at `0`; and all
+> 22 modal interaction tests pass.
+>
+> The superseded sections below are retained as a record. §4.2 (title and
+> description are not constant offsets) and §4.4 (the info column decomposes, in the
+> reference too) remain accurate. §4.5 is partly superseded and carries its own note.
+
 The portfolio is **not** complete. The audit's other P1 items and all P2/P3 items
 remain open.
 
@@ -259,6 +426,11 @@ future pass on this area.
 
 ### 4.1 The reference's rate is −speed / 10, not −speed / 45
 
+> **Superseded — see the correction at the top of this document.** This section
+> correctly identified the discrepancy but the implementation kept using
+> `−speed / 45` because the task named the audit authoritative. The rate is now
+> `−speed / 10`, as measured here.
+
 The audit's rate was derived from a single `b1num` sample: `+70.99 → −145.01` over
 a recorded `scrollY 0 → 1620`, giving `−216 / 1620 = −0.1333 = −6/45`.
 
@@ -306,6 +478,12 @@ treats all seven layers as rate-driven, which is what they are.
 
 ### 4.3 The reference disables hero parallax on phones
 
+> **Superseded — see the correction at the top of this document.** This section
+> found that the reference applies no parallax on mobile, and the implementation
+> enabled it anyway as "a deliberate superset of the reference". That was the wrong
+> call: the goal is to match observed behaviour, and mobile now creates no triggers
+> at all. The breakpoint is exactly 1024px, not the 768px assumed here.
+
 At 390×844 every layer's transform is `0` at every scroll position, while
 `window.scrollY` advances normally (700, 1400, … 5600) — locomotive-scroll uses
 native scroll on phones (`smartphone: { smooth: false }`) and applies no parallax
@@ -351,6 +529,14 @@ the inert-parallax question in §3.1.
 
 ### 4.5 Block layers travel further here than in the reference
 
+> **Superseded — see the correction at the top of this document.** This section
+> describes the `−speed / 45` implementation, which drove every layer from the hero
+> top across the full 3600px range. The story layers are now anchored where their
+> own centre crosses the viewport centre and saturate half a viewport either side,
+> so their travel is bounded at ±450 on a 900px viewport — against the reference's
+> measured ±428 — rather than accumulating over the whole range. Only the
+> observation that the rate constant matters is still relevant.
+
 Because the spec's rate is applied over this build's full 3600px hero range, while
 the reference applies its rate over roughly one viewport, the story layers cover
 more ground within their visible passage — the portrait's total travel is 800px
@@ -373,14 +559,22 @@ over this hero's range would give the title 2880px of travel. Over this range
 
 ## 5. Status
 
-**Hero layer parallax complete** — the seven layers are implemented and their
-runtime rates verified against the specified rule on desktop and mobile, with
-reduced motion, the P0 video, the loader and the responsive layout all preserved.
+**Hero layer parallax complete and corrected** — the seven layers run at
+`−speed / 10` on desktop (`min-width: 1024px`) and are static below it, both
+verified against runtime transforms at 1366×768, 1440×900, 1920×1080 and 390×844,
+with reduced motion, the P0 video, the loader, the modal, the static gallery and
+testimonial images, and the responsive layout all preserved.
+
+**Anchoring fixed** — each layer's window is derived from the live viewport inside
+`apply`, and its position is measured with the applied transform subtracted, so the
+offsets are reproducible across resizes and every story layer crosses zero at its
+own anchor. Before that fix the same viewport at the same scroll could report two
+different offsets, and the story layers sat against the wrong end of their window.
 
 **Centralized ScrollTrigger registration complete** — one plugin, registering once
 before mount, no remaining plugin warnings.
 
-Not complete: the audit's other P1 items (modal, footer quote randomisation, the
-inert-parallax product decision), all P2/P3 items, the reference-corrections in §4
-if they are to be acted on, and the gallery/testimonial behaviour change noted in
-§3.1. The portfolio is not finished.
+Not complete: the audit's other P1 items (footer quote randomisation, image
+composition), all P2/P3 items, the open product decisions listed in
+`P1_HERO_PARALLAX_REPORT.md` §4.2 and §4.4–§4.5, and the review-modal variant noted
+in `P1_MODAL_REPORT.md` §5.3. The portfolio is not finished.
