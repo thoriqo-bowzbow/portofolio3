@@ -15,3 +15,6 @@
 - Cleans up animation resources properly on unmount — GSAP timelines, ScrollTriggers, event listeners and timers. Confidence: 0.8
 - Treats mobile as a deliberately designed layout rather than a shrunken desktop. Confidence: 0.8
 - Does not invent behaviour (e.g. motion, effects) merely to make something look interesting — matches the spec or reference instead. Confidence: 0.75
+
+## Performance
+- Optimises assets and delivery (optimised images, lazy loading where appropriate, no unnecessary dependencies) but treats it as a hard constraint that optimisation must not change the visual result. Confidence: 0.7
