@@ -40,6 +40,13 @@ const { isActive: videoActive } = useScrubVideo(videoRef, scrollerRef, {
   srcSmall: '/media/hero-atmosphere-540.webm'
 })
 
+/**
+ * Differential layer drift across the 500vh. Each layer moves at
+ * `−speed / 45` px per px scrolled — see `useHeroParallax` and
+ * docs/P1_HERO_PARALLAX_REPORT.md.
+ */
+useHeroParallax(scrollerRef)
+
 /** Story block offsets, matching the reference's 180vh / 280vh / 380vh. */
 const blockOffsets = ['180vh', '280vh', '380vh'] as const
 
