@@ -129,6 +129,10 @@ tween in this repository could run.
 > P0 video scrub is **not** affected — it is a separate mechanism, and it still
 > runs on mobile with the 540p variant.
 >
+> The threshold is exact, checked at the boundary rather than only at the wide and
+> narrow ends: at **1023×768** all seven layers read `0` at every sampled scroll
+> position, and at **1024×768** all seven run at the rates in the table above.
+>
 > ### Final verification
 >
 > Rate measured from runtime transforms across the linear span of each layer's
