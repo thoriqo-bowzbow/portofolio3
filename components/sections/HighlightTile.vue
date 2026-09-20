@@ -2,9 +2,15 @@
 /**
  * One tile in the highlights mosaic.
  *
- * Dormant at `opacity: 0` and desaturated until revealed. The image is a
- * parallax reservoir — `160%` tall offset `-30%` — so it can translate on scroll
- * without exposing an edge (RECON §7.5).
+ * Dormant at `opacity: 0` and desaturated until revealed.
+ *
+ * **No scroll parallax.** The image sits in a `160% / -30%` reservoir, but the
+ * reference's equivalent is inert: all ten `.md-glrycard__image` elements declare
+ * a randomised `data-scroll-speed` (measured 0.15–0.99, regenerated per load) and
+ * yet sample at `translateY: 0` across the whole scroll range while in view. The
+ * reservoir is kept because it is in the reference's CSS and governs how the image
+ * crops; the motion that `useParallax` inferred from its presence is not. See
+ * docs/P1_MOTION_RECONCILIATION_REPORT.md.
  *
  * Hover runs the reference's signature three-stage takeover: the frosted
  * `blur(10px)` overlay fades in while title, description and link cascade in at
@@ -17,10 +23,6 @@ const props = defineProps<{
 }>()
 
 const root = ref<HTMLElement | null>(null)
-const image = ref<HTMLElement | null>(null)
-
-// 160% tall, -30% top → 30% overflow on each side
-useParallax(root, image, { reservoirFraction: 0.3 })
 </script>
 
 <template>
@@ -30,7 +32,6 @@ useParallax(root, image, { reservoirFraction: 0.3 })
     :class="{ 'highlight-tile--featured': props.item.featured }"
   >
     <img
-      ref="image"
       class="highlight-tile__image"
       :src="props.item.image"
       :alt="`${props.item.title} preview`"
@@ -75,7 +76,7 @@ useParallax(root, image, { reservoirFraction: 0.3 })
 }
 
 .highlight-tile__image {
-  @include parallax-image(160%, -30%);
+  @include reservoir-image(160%, -30%);
 }
 
 .highlight-tile__info {

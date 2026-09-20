@@ -2,9 +2,15 @@
 /**
  * Testimonial card.
  *
- * Portrait card, dormant at `opacity .4`, greyscale image in a 130%/-15%
- * parallax reservoir. Hover runs the frosted takeover with the text cascade at
- * 0.2s / 0.5s / 0.8s (RECON §7.6).
+ * Portrait card, dormant at `opacity .4`, greyscale image in a 130%/-15% reservoir.
+ *
+ * **No scroll parallax.** All six `.md-rvwcard__image` in the reference carry
+ * `data-scroll-speed="1"` and sample at `translateY: 0` while in view. The
+ * reservoir is retained because it is in the reference's CSS and governs the crop;
+ * the motion is not. See docs/P1_MOTION_RECONCILIATION_REPORT.md.
+ *
+ * Hover runs the frosted takeover with the text cascade at 0.2s / 0.5s / 0.8s
+ * (RECON §7.6).
  *
  * The vertical staircase is not applied here — it is a `:nth-child` rule on the
  * grid, because it depends on position in the list.
@@ -16,16 +22,11 @@ const props = defineProps<{
 }>()
 
 const root = ref<HTMLElement | null>(null)
-const image = ref<HTMLElement | null>(null)
-
-// 130% tall, -15% top → 15% overflow on each side
-useParallax(root, image, { reservoirFraction: 0.15 })
 </script>
 
 <template>
   <article ref="root" class="testimonial-card">
     <img
-      ref="image"
       class="testimonial-card__image"
       :src="props.testimonial.portrait"
       :alt="`Portrait of ${props.testimonial.name}`"
@@ -65,7 +66,6 @@ useParallax(root, image, { reservoirFraction: 0.15 })
   top: -15%;
   position: relative;
   filter: grayscale(1);
-  will-change: transform;
 }
 
 .testimonial-card__info {

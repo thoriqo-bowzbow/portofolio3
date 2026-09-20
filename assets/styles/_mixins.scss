@@ -181,17 +181,29 @@
 }
 
 // -----------------------------------------------------------------------------
-// Parallax reservoir — image is taller than its frame so it can translate
-// without exposing an edge (RECON §7.5)
+// Image reservoir (RECON §7.5)
 // -----------------------------------------------------------------------------
-@mixin parallax-image($height: 160%, $top: -30%) {
+/**
+ * Image reservoir — oversized and offset inside an `overflow: hidden` frame.
+ *
+ * The reference's gallery (`160% / -30%`) and testimonial (`130% / -15%`) images
+ * are both sized larger than their frame. This governs **how the image crops** and
+ * is part of the composition, so it is kept.
+ *
+ * It is geometry, not motion. The mixin was previously called `parallax-image`,
+ * which asserted a behaviour the reference does not exhibit — its equivalent
+ * images carry `data-scroll-speed` attributes but never move (measured; see
+ * docs/P1_MOTION_RECONCILIATION_REPORT.md). Without a transform being applied,
+ * `will-change: transform` only pins the element to its own compositor layer for
+ * nothing, so it is gone too.
+ */
+@mixin reservoir-image($height: 160%, $top: -30%) {
   position: absolute;
   top: $top;
   left: 0;
   width: 100%;
   height: $height;
   object-fit: cover;
-  will-change: transform;
 }
 
 // -----------------------------------------------------------------------------

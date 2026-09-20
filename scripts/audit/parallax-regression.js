@@ -1,11 +1,18 @@
 /**
- * Regression check for the pre-existing `useParallax` consumers.
+ * Gallery and testimonial image motion check.
  *
- * Before `gsap.registerPlugin(ScrollTrigger)` existed, the `scrollTrigger:` config
- * in `useParallax` was discarded: GSAP ran the tween as a plain 0.5s animation, so
- * the image travelled to its end offset once and stayed there. Now that the plugin
- * is registered, the same tween is scroll-linked. This reports both consumers'
- * runtime offsets so the change is measured rather than assumed.
+ * History: before `gsap.registerPlugin(ScrollTrigger)` existed, the `scrollTrigger:`
+ * config in `useParallax` was discarded and GSAP ran the tween as a plain 0.5s
+ * animation, leaving the image parked at its end offset. Registering the plugin
+ * then made the tween genuinely scroll-linked.
+ *
+ * Both states have since been superseded: the reference's equivalent images were
+ * measured inert (`translateY: 0` across every sampled position while in view), so
+ * the tweens were removed and the images should now be **static at 0**. This probe
+ * exists to confirm that, and to catch the motion returning.
+ *
+ * Note the values must be read while the tiles are on screen — an element outside
+ * its trigger range reports 0 for reasons unrelated to whether motion is wired up.
  */
 (() => {
   const ty = (el) => {
