@@ -50,8 +50,6 @@ useHeroParallax(scrollerRef)
 /** Story block offsets, matching the reference's 180vh / 280vh / 380vh. */
 const blockOffsets = ['180vh', '280vh', '380vh'] as const
 
-const { goTo } = useAnchorNav()
-
 /**
  * Entrance: the name rises into place once the loader clears. The reference
  * gates its hero choreography behind the loader flag, so this waits for the same
@@ -144,11 +142,6 @@ onMounted(() => {
         />
       </div>
     </div>
-
-    <button class="hero__scroll-hint" type="button" @click="goTo('#about')">
-      <span class="visually-hidden">Scroll to the about section</span>
-      <span class="hero__scroll-hint-line" aria-hidden="true" />
-    </button>
   </section>
 </template>
 
@@ -279,51 +272,6 @@ onMounted(() => {
   margin: 350px 0 0;
 }
 
-// -----------------------------------------------------------------------------
-// Scroll affordance — a small addition at the base of the hero
-// -----------------------------------------------------------------------------
-.hero__scroll-hint {
-  @include button-reset;
-  @include focus-ring(2px, $c-surface);
-
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 4;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 8px;
-  opacity: 0.6;
-  transition: opacity $dur-hover;
-
-  &:hover {
-    opacity: 1;
-  }
-}
-
-.hero__scroll-hint-line {
-  width: 1px;
-  height: 56px;
-  background: $c-surface;
-  animation: hero-hint 2.4s $ease-reveal infinite;
-  transform-origin: top center;
-}
-
-@keyframes hero-hint {
-  0%,
-  100% {
-    transform: scaleY(0.35);
-    opacity: 0.4;
-  }
-
-  50% {
-    transform: scaleY(1);
-    opacity: 1;
-  }
-}
-
 @include xl-down {
   .hero__title-text {
     font-size: 212px;
@@ -368,19 +316,11 @@ onMounted(() => {
     background: $c-white-50;
     margin: 100px 0 0;
   }
-
-  .hero__scroll-hint {
-    bottom: 120px;
-  }
 }
 
 @include reduced-motion {
   .hero__title-text {
     opacity: 1;
-  }
-
-  .hero__scroll-hint-line {
-    animation: none;
   }
 }
 </style>
