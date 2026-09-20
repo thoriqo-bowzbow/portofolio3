@@ -12,12 +12,16 @@ export default defineNuxtConfig({
   components: [{ path: '~/components', pathPrefix: false }],
 
   css: [
-    // Self-hosted fonts — no runtime network dependency
+    // Self-hosted fonts — no runtime network dependency.
+    // Only the `latin` subsets of the display face are loaded: its only content
+    // is English, and Trirong also ships thai / latin-ext / vietnamese subsets
+    // that would otherwise add ~100 KB for nothing.
     '@fontsource/montserrat/300.css',
     '@fontsource/montserrat/400.css',
     '@fontsource/montserrat/500.css',
     '@fontsource/montserrat/600.css',
-    '@fontsource-variable/playfair-display/index.css',
+    '@fontsource/trirong/latin-400.css',
+    '@fontsource/trirong/latin-700.css',
     '~/assets/styles/main.scss'
   ],
 

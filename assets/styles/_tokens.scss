@@ -64,10 +64,20 @@ $c-focus: rgba(0, 76, 255, 0.6);
 // -----------------------------------------------------------------------------
 // Typography
 // Display/body split preserving the reference's hierarchy and weights.
-// The reference ships SK Zweig (commercial, non-redistributable) — this build
-// uses an open-licensed editorial serif in the same role. See PRODUCTION_AUDIT.
+//
+// The reference ships SK Zweig (commercial, non-redistributable). This build uses
+// Trirong, chosen on *metric* compatibility rather than stylistic resemblance —
+// selected by measuring 120+ open-licensed serifs against SK Zweig's glyph
+// profile. See docs/P1_TYPOGRAPHY_REPORT.md.
+//
+// SK Zweig's signature is that its lowercase ascenders sit at cap height
+// (asc/cap 0.983). The previous substitute, Playfair Display, overshot that by
+// 13.8%, which made every display heading read larger than the reference at the
+// same declared font-size. Trirong overshoots by 3.0% and matches cap height to
+// within 0.4%, so no corrective size scale is needed — the tokens below stay
+// exactly as the reference declares them.
 // -----------------------------------------------------------------------------
-$font-display: 'Playfair Display Variable', 'Playfair Display', Georgia, 'Times New Roman', serif;
+$font-display: 'Trirong', Georgia, 'Times New Roman', serif;
 $font-body: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
 // Non-monotonic on purpose — mirrors the reference scale (RECON §4).
