@@ -1,0 +1,19 @@
+# Dependencies & build output
+node_modules
+.nuxt
+.output
+.data
+dist
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# QA artefacts — screenshots are regenerable via scripts/capture.mjs
+tools/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log

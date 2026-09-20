@@ -1,0 +1,236 @@
+// =============================================================================
+// Mixins & functions
+// =============================================================================
+@use 'tokens' as *;
+
+// -----------------------------------------------------------------------------
+// Media queries — mobile-last, mirroring the reference's max-width cascade
+// -----------------------------------------------------------------------------
+@mixin below($bp) {
+  @media (max-width: $bp) {
+    @content;
+  }
+}
+
+@mixin above($bp) {
+  @media (min-width: $bp + 1px) {
+    @content;
+  }
+}
+
+@mixin xl-down {
+  @include below($bp-xl) {
+    @content;
+  }
+}
+
+@mixin lg-down {
+  @include below($bp-lg) {
+    @content;
+  }
+}
+
+@mixin md-down {
+  @include below($bp-md) {
+    @content;
+  }
+}
+
+@mixin sm-down {
+  @include below($bp-sm) {
+    @content;
+  }
+}
+
+@mixin xs-down {
+  @include below($bp-xs) {
+    @content;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Container — exact reference semantics (RECON §5)
+// -----------------------------------------------------------------------------
+@mixin container {
+  width: $container-max;
+  margin: 0 auto;
+
+  @include xl-down {
+    width: 100%;
+    max-width: 992px;
+    padding: 0 $container-pad;
+  }
+
+  @include md-down {
+    max-width: 768px;
+  }
+
+  @include sm-down {
+    max-width: 576px;
+  }
+
+  @include xs-down {
+    max-width: unset;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// The master two-column split shared by all six content sections (RECON §5)
+// -----------------------------------------------------------------------------
+@mixin grid-split {
+  display: grid;
+  grid-template-columns: $grid-split-desktop auto;
+  gap: $grid-gap;
+
+  @include md-down {
+    grid-template-columns: $grid-split-tablet auto;
+  }
+
+  @include sm-down {
+    display: flex;
+    flex-direction: column;
+    gap: $grid-gap-sm;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Section rhythm
+// -----------------------------------------------------------------------------
+@mixin section-padding {
+  padding: $section-pad-y 0;
+
+  @include sm-down {
+    padding: $section-pad-y-sm 0;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Display type — the reference sets every heading at weight 400 unless noted
+// -----------------------------------------------------------------------------
+@mixin display($size, $weight: 400, $lh: normal) {
+  font-family: $font-display;
+  font-weight: $weight;
+  font-size: $size;
+  line-height: $lh;
+  font-style: normal;
+}
+
+@mixin body-text($size, $weight: 400, $lh: $lh-secondary) {
+  font-family: $font-body;
+  font-weight: $weight;
+  font-size: $size;
+  line-height: $lh;
+  font-style: normal;
+}
+
+// Section title — uses the fluid --ttitle token
+@mixin section-title($weight: 400) {
+  @include display(var(--ttitle), $weight);
+  color: $c-ink;
+}
+
+// Section subtitle
+@mixin section-subtitle($lh: $lh-secondary) {
+  @include body-text(var(--tsubtitle), 300, $lh);
+  color: $c-ink-60-readable;
+  transition: $dur-reveal;
+  align-self: center;
+}
+
+// Body copy that "inks in" on reveal (RECON §3)
+//
+// The dormant colour is a transient pre-reveal state, not a resting style: the
+// reveal fires as the line touches the viewport edge, so the 0.5s transition
+// completes before the text reaches the reading zone. Users who have asked the
+// OS for more contrast skip the effect entirely and get full-contrast copy.
+@mixin ink-in-text {
+  @include body-text(var(--desctext), 500, $lh-body);
+  color: $c-ink-dormant;
+  transition: $dur-reveal;
+
+  &.is-inview {
+    color: $c-ink;
+  }
+
+  @media (prefers-contrast: more) {
+    color: $c-ink;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Frosted panel — the reference's `backdrop-filter` recipe family
+// -----------------------------------------------------------------------------
+@mixin frosted($bg, $blur) {
+  background: $bg;
+  -webkit-backdrop-filter: blur($blur);
+  backdrop-filter: blur($blur);
+}
+
+// -----------------------------------------------------------------------------
+// Desaturate → reveal. The reference's core image treatment (RECON §8)
+// -----------------------------------------------------------------------------
+@mixin desaturate($opacity: 1, $grayscale: 1) {
+  filter: grayscale($grayscale);
+  opacity: $opacity;
+  transition: $dur-card;
+}
+
+@mixin desaturate-revealed {
+  filter: revert;
+  opacity: 1;
+}
+
+// -----------------------------------------------------------------------------
+// Parallax reservoir — image is taller than its frame so it can translate
+// without exposing an edge (RECON §7.5)
+// -----------------------------------------------------------------------------
+@mixin parallax-image($height: 160%, $top: -30%) {
+  position: absolute;
+  top: $top;
+  left: 0;
+  width: 100%;
+  height: $height;
+  object-fit: cover;
+  will-change: transform;
+}
+
+// -----------------------------------------------------------------------------
+// Square, reset button — the reference's `all: unset` + explicit box
+// -----------------------------------------------------------------------------
+@mixin button-reset {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+// -----------------------------------------------------------------------------
+// Reduced motion guard
+// -----------------------------------------------------------------------------
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Truncate to N lines
+// -----------------------------------------------------------------------------
+@mixin line-clamp($lines) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lines;
+  line-clamp: $lines;
+}
+
+// -----------------------------------------------------------------------------
+// Accessibility — visible focus ring, added on top of the reference
+// (the reference sets `outline: none` globally; documented deviation)
+// -----------------------------------------------------------------------------
+@mixin focus-ring($offset: 3px, $colour: $c-focus) {
+  &:focus-visible {
+    outline: 2px solid $colour;
+    outline-offset: $offset;
+  }
+}

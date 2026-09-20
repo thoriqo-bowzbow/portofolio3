@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900" role="img" aria-label="Project preview composition 4">
+  <defs>
+    <clipPath id="clip-h4"><rect width="1200" height="900"/></clipPath>
+  </defs>
+  <g clip-path="url(#clip-h4)">
+    <rect width="1200" height="900" fill="#eaf0ea"/>
+    <g transform="translate(0 0)">
+      <rect x="96" y="236" width="1008" height="428" rx="10" fill="#3f7a4c" opacity="0.14"/>
+      <line x1="96" y1="252" x2="1104" y2="252" stroke="#1f2a22" stroke-width="1.5" opacity="0.09"/><line x1="96" y1="320" x2="1104" y2="320" stroke="#1f2a22" stroke-width="1.5" opacity="0.09"/><line x1="96" y1="388" x2="1104" y2="388" stroke="#1f2a22" stroke-width="1.5" opacity="0.09"/><line x1="96" y1="456" x2="1104" y2="456" stroke="#1f2a22" stroke-width="1.5" opacity="0.09"/><line x1="96" y1="524" x2="1104" y2="524" stroke="#1f2a22" stroke-width="1.5" opacity="0.09"/><line x1="96" y1="592" x2="1104" y2="592" stroke="#1f2a22" stroke-width="1.5" opacity="0.09"/><line x1="96" y1="660" x2="1104" y2="660" stroke="#1f2a22" stroke-width="1.5" opacity="0.09"/>
+      <line x1="96" y1="236" x2="96" y2="664" stroke="#1f2a22" stroke-width="1.5" opacity="0.09"/><line x1="168" y1="236" x2="168" y2="664" stroke="#1f2a22" stroke-width="1.5" opacity="0.09"/><line x1="240" y1="236" x2="240" y2="664" stroke="#1f2a22" stroke-width="1.5" opacity="0.09"/><line x1="312" y1="236" x2="312" y2="664" stroke="#1f2a22" stroke-width="1.5" opacity="0.09"/><line x1="384" y1="236" x2="384" y2="664" stroke="#1f2a22" stroke-width="1.5" opacity="0.09"/><line x1="456" y1="236" x2="456" y2="664" stroke="#1f2a22" stroke-width="1.5" opacity="0.09"/><line x1="528" y1="236" x2="528" y2="664" stroke="#1f2a22" stroke-width="1.5" opacity="0.09"/><line x1="600" y1="236" x2="600" y2="664" stroke="#1f2a22" stroke-width="1.5" opacity="0.09"/><line x1="672" y1="236" x2="672" y2="664" stroke="#1f2a22" stroke-width="1.5" opacity="0.09"/><line x1="744" y1="236" x2="744" y2="664" stroke="#1f2a22" stroke-width="1.5" opacity="0.09"/><line x1="816" y1="236" x2="816" y2="664" stroke="#1f2a22" stroke-width="1.5" opacity="0.09"/><line x1="888" y1="236" x2="888" y2="664" stroke="#1f2a22" stroke-width="1.5" opacity="0.09"/><line x1="960" y1="236" x2="960" y2="664" stroke="#1f2a22" stroke-width="1.5" opacity="0.09"/><line x1="1032" y1="236" x2="1032" y2="664" stroke="#1f2a22" stroke-width="1.5" opacity="0.09"/><line x1="1104" y1="236" x2="1104" y2="664" stroke="#1f2a22" stroke-width="1.5" opacity="0.09"/>
+      <path d="M180 620 C340 520 430 560 560 440 C690 320 800 380 1020 268"
+            stroke="#3f7a4c" stroke-width="11" fill="none" stroke-linecap="round"/>
+      <circle cx="180" cy="620" r="26" fill="#3f7a4c"/>
+      <circle cx="1020" cy="268" r="34" fill="#1f2a22" opacity="0.85"/>
+      <circle cx="1020" cy="268" r="62" fill="#1f2a22" opacity="0.16"/></g>
+    
+    <rect width="1200" height="900" fill="#1f2a22" opacity="0.05"/>
+    <rect x="0" y="0" width="1200" height="120" fill="#eaf0ea" opacity="0.55"/>
+    <rect x="0" y="780" width="1200" height="120" fill="#eaf0ea" opacity="0.55"/>
+  </g>
+</svg>

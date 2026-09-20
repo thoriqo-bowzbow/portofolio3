@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Vite">
+  <g style="color:hsl(234 58% 36%)"><path d="M32 4 L57 14 V34 C57 48 45 57 32 61 C19 57 7 48 7 34 V14 Z" fill="currentColor"/></g>
+  <text x="32" y="33" text-anchor="middle" dominant-baseline="central"
+        font-family="Montserrat, Arial, sans-serif" font-size="20"
+        font-weight="600" letter-spacing="-0.4" fill="#fff">VI</text>
+</svg>

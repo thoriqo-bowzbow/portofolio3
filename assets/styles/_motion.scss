@@ -1,0 +1,239 @@
+// =============================================================================
+// Motion — keyframes and reveal vocabulary
+// Keyframe bodies transcribed from the reference stylesheets (RECON §9).
+// =============================================================================
+@use 'tokens' as *;
+@use 'mixins' as *;
+
+// -----------------------------------------------------------------------------
+// Entrance / reveal keyframes
+// -----------------------------------------------------------------------------
+
+// The workhorse: used by gallery + testimonial overlay cascades
+@keyframes fade-in-up {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes fade-out-up {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateY(-60px);
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  to {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes fade-in-up-short {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(50px);
+  }
+
+  to {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-out-up-short {
+  0% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-50px);
+  }
+}
+
+// Loader curtain columns
+@keyframes block-appear {
+  0% {
+    transform: translateY(-200px);
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+    background: $c-surface;
+  }
+}
+
+// Header entrance.
+// NOTE: the reference references `headerAppear` but the keyframe body is not
+// present in its shipped CSS (RECON §12.1). This is a documented equivalent.
+@keyframes header-appear {
+  0% {
+    opacity: 0;
+    transform: translateY(-24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rotater {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+// Two-phase L-shaped expansion of the mobile mark
+@keyframes mobile-mark-open {
+  0% {
+    width: 90px;
+    height: 90px;
+    left: calc(50% - 45px);
+  }
+
+  50% {
+    width: 90px;
+    height: 450px;
+    left: calc(50% - 45px);
+  }
+
+  to {
+    width: 350px;
+    height: 450px;
+    left: calc(50% - 175px);
+  }
+}
+
+@keyframes mobile-mark-close {
+  0% {
+    width: 350px;
+    height: 450px;
+    left: calc(50% - 175px);
+  }
+
+  50% {
+    width: 90px;
+    height: 450px;
+    left: calc(50% - 45px);
+  }
+
+  to {
+    width: 90px;
+    height: 90px;
+    left: calc(50% - 45px);
+  }
+}
+
+@keyframes mobile-mark-content-open {
+  0% {
+    max-width: 0;
+    padding: 30px 0;
+  }
+
+  to {
+    max-width: 100%;
+    padding: 30px 20px;
+  }
+}
+
+@keyframes mobile-mark-content-close {
+  0% {
+    max-width: 100%;
+    padding: 30px 20px;
+  }
+
+  to {
+    max-width: 0;
+    padding: 30px 0;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Reveal contract
+// Elements that reveal on scroll start in a dormant state and are promoted by
+// the `.is-inview` class (set by useReveal / ScrollTrigger).
+// -----------------------------------------------------------------------------
+.reveal-fade {
+  opacity: 0;
+  transition: opacity $dur-card $ease-reveal;
+
+  &.is-inview {
+    opacity: 1;
+  }
+}
+
+.reveal-filter {
+  filter: grayscale(1);
+  opacity: 0.2;
+  transition: $dur-card;
+
+  &.is-inview {
+    @include desaturate-revealed;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Reduced motion — the reference provides none; this build does (deviation #3)
+// -----------------------------------------------------------------------------
+@include reduced-motion {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  // Reveal targets must be visible immediately rather than waiting on scroll
+  .reveal-fade,
+  .reveal-filter,
+  [class*='reveal-'] {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+    visibility: visible !important;
+  }
+}

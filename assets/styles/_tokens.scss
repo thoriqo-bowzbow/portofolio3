@@ -1,0 +1,136 @@
+// =============================================================================
+// Design tokens
+// Values derived from measured reference geometry — see docs/MAMEED_RECON.md
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// Breakpoints — four, matching the reference exactly (RECON §10)
+// -----------------------------------------------------------------------------
+$bp-xl: 1540px;
+$bp-lg: 1200px;
+$bp-md: 992px;
+$bp-sm: 768px;
+$bp-xs: 576px;
+
+// -----------------------------------------------------------------------------
+// Colour — the reference's palette is deliberately tiny (RECON §3)
+// -----------------------------------------------------------------------------
+$c-bg: #fafafa;
+$c-surface: #ffffff;
+$c-ink: #252324;
+$c-black: #000000;
+
+$c-ink-80: rgba(37, 35, 36, 0.8);
+$c-ink-70: rgba(37, 35, 36, 0.7);
+$c-ink-60: rgba(37, 35, 36, 0.6);
+$c-ink-50: rgba(37, 35, 36, 0.5);
+$c-ink-40: rgba(37, 35, 36, 0.4);
+$c-ink-30: rgba(37, 35, 36, 0.3);
+$c-ink-20: rgba(37, 35, 36, 0.2);
+$c-ink-10: rgba(37, 35, 36, 0.1);
+
+$c-white-70: hsla(0, 0%, 100%, 0.7);
+$c-white-60: hsla(0, 0%, 100%, 0.6);
+$c-white-50: hsla(0, 0%, 100%, 0.5);
+$c-white-40: hsla(0, 0%, 100%, 0.4);
+$c-white-20: hsla(0, 0%, 100%, 0.2);
+
+$c-scrim: rgba(37, 35, 36, 0.6);
+$c-scrim-mobile: rgba(37, 35, 36, 0.4);
+
+// Accessibility nudges on the reference palette.
+// The reference's `$c-ink-60` on `#fafafa` measures 4.15:1, just under the 4.5:1
+// AA threshold for normal-size text. `-readable` is one step darker (5.2:1) and
+// is used for every subtitle and secondary label; the original tone is retained
+// for the larger display roles where 4.15:1 already passes at 3:1.
+$c-ink-60-readable: rgba(37, 35, 36, 0.7);
+
+// Dormant state for the ink-in reveal. The reference uses 0.2, which measures
+// 1.49:1 — a transient pre-reveal state rather than a resting colour. Raised one
+// step so the text is legible even if the reveal never fires, while remaining
+// clearly "not yet active". See docs/PRODUCTION_AUDIT.md.
+$c-ink-dormant: rgba(37, 35, 36, 0.32);
+
+// Type over imagery: a soft shadow that is imperceptible on dark backgrounds and
+// rescues contrast where a hero block lands on a light part of the backdrop.
+$shadow-type-over-image: 0 1px 24px rgba(13, 23, 37, 0.45), 0 1px 3px rgba(13, 23, 37, 0.3);
+
+$c-error: #f53737;
+$c-error-deep: #ba0d0d;
+$c-success: #52d834;
+$c-success-deep: #249c55;
+$c-focus: rgba(0, 76, 255, 0.6);
+
+// -----------------------------------------------------------------------------
+// Typography
+// Display/body split preserving the reference's hierarchy and weights.
+// The reference ships SK Zweig (commercial, non-redistributable) — this build
+// uses an open-licensed editorial serif in the same role. See PRODUCTION_AUDIT.
+// -----------------------------------------------------------------------------
+$font-display: 'Playfair Display Variable', 'Playfair Display', Georgia, 'Times New Roman', serif;
+$font-body: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+// Non-monotonic on purpose — mirrors the reference scale (RECON §4).
+// Exposed as CSS custom properties in _reset.scss so they cascade.
+$t-title-xl: 56px;
+$t-title-lg: 36px;
+$t-title-md: 26px;
+$t-title-sm: 32px;
+
+$t-sub-xl: 20px;
+$t-sub-lg: 16px;
+$t-sub-md: 12px;
+$t-sub-sm: 14px;
+
+$t-desc-xl: 23px;
+$t-desc-lg: 15px;
+$t-desc-md: 13px;
+$t-desc-sm: 4.16667vw;
+
+$lh-body: 180%;
+$lh-secondary: 140%;
+$lh-tight: 120%;
+
+// -----------------------------------------------------------------------------
+// Layout
+// -----------------------------------------------------------------------------
+$container-max: 1440px;
+$container-pad: 15px;
+
+$grid-split-desktop: 30%;
+$grid-split-tablet: 20%;
+$grid-gap: 50px;
+$grid-gap-sm: 20px;
+
+$section-pad-y: 100px;
+$section-pad-y-sm: 50px;
+
+$hero-height: 500vh;
+$hero-height-sm: 600lvh;
+
+$footer-height: 100vh;
+
+// -----------------------------------------------------------------------------
+// Motion vocabulary — extracted from the reference's transition usage (RECON §9.7)
+// -----------------------------------------------------------------------------
+$ease-default: ease;
+$ease-reveal: ease-in-out;
+$ease-panel: cubic-bezier(0.77, 0.24, 0.43, 0.87);
+$ease-overshoot: cubic-bezier(0, 1.01, 0, 2);
+
+$dur-hover: 0.3s;
+$dur-reveal: 0.5s;
+$dur-filter: 0.6s;
+$dur-card: 0.8s;
+$dur-enter: 1s;
+$dur-loader: 2s;
+$dur-nav: 3000ms;
+
+$scroll-lerp: 0.09;
+$scroll-offset-fraction: 0.15;
+
+// -----------------------------------------------------------------------------
+// Radii — the reference is uniformly square-cornered (RECON §2)
+// -----------------------------------------------------------------------------
+$radius-none: 0;
+$radius-scrollbar: 10px;

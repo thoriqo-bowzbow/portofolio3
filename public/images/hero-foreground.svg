@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080" role="img" aria-label="Sculptural foreground form">
+  <defs>
+    <linearGradient id="stone" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#f4f3f0"/>
+      <stop offset="42%" stop-color="#d8d6d1"/>
+      <stop offset="72%" stop-color="#8f8d88"/>
+      <stop offset="100%" stop-color="#3a3a38"/>
+    </linearGradient>
+    <linearGradient id="plinth" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#eceae6"/>
+      <stop offset="45%" stop-color="#cfcdc8"/>
+      <stop offset="78%" stop-color="#83817c"/>
+      <stop offset="100%" stop-color="#33322f"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Standing form: the compositional anchor. Opaque, overlaps the hero name. -->
+  <g transform="translate(870 470)">
+    <path d="M-118 470 L-104 96 L84 74 L136 470 Z" fill="url(#plinth)"/>
+    <path d="M-104 96 L84 74 L90 104 L-96 128 Z" fill="#fbfbf9" opacity="0.92"/>
+    <path d="M-118 470 L136 470 L148 500 L-132 500 Z" fill="#c9c7c2" opacity="0.8"/>
+    <path d="M62 74 L136 470 L98 470 L34 92 Z" fill="#000" opacity="0.18"/>
+    <ellipse cx="-30" cy="150" rx="66" ry="26" fill="#fff" opacity="0.16"/>
+
+    <!-- Vessel resting on the plinth -->
+    <path d="M-52 92 L-40 -14 L46 -22 L60 92 Z" fill="url(#stone)"/>
+    <path d="M-40 -14 L46 -22 L50 8 L-44 16 Z" fill="#fdfdfb" opacity="0.9"/>
+    <path d="M34 -22 L60 92 L36 92 L16 -16 Z" fill="#000" opacity="0.2"/>
+    <path d="M-52 92 L60 92 L66 116 L-58 116 Z" fill="#b9b7b2" opacity="0.85"/>
+    <path d="M-40 40 C-10 30 20 34 44 46" stroke="#a9a7a2" stroke-width="3" fill="none" opacity="0.6"/>
+    <path d="M-42 66 C-12 56 18 60 46 72" stroke="#a9a7a2" stroke-width="3" fill="none" opacity="0.5"/>
+  </g>
+
+  <!-- Branch: organic counterweight, also crossing the name -->
+  <g stroke="#8a6a52" fill="none" stroke-linecap="round" transform="translate(870 470)">
+    <path d="M-16 -30 C-30 -110 -8 -176 46 -224" stroke-width="9" opacity="0.92"/>
+    <path d="M46 -224 C82 -256 132 -268 176 -256" stroke-width="5" opacity="0.86"/>
+    <path d="M34 -204 C64 -192 106 -186 142 -196" stroke-width="3.5" opacity="0.7"/>
+    <path d="M8 -156 C40 -142 72 -132 106 -138" stroke-width="3" opacity="0.55"/>
+    <path d="M176 -256 C208 -252 230 -236 242 -212" stroke-width="2.5" opacity="0.6"/>
+    <path d="M120 -262 C142 -274 168 -276 188 -268" stroke-width="2" opacity="0.45"/>
+  </g>
+</svg>

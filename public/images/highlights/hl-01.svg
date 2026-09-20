@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900" role="img" aria-label="Project preview composition 0">
+  <defs>
+    <clipPath id="clip-h0"><rect width="1200" height="900"/></clipPath>
+  </defs>
+  <g clip-path="url(#clip-h0)">
+    <rect width="1200" height="900" fill="#eef1f6"/>
+    <g transform="translate(0 0)">
+      <rect x="96" y="286" width="440" height="30" rx="6" fill="#1c2430" opacity="0.78"/>
+      <rect x="96" y="334" width="330" height="30" rx="6" fill="#1c2430" opacity="0.78"/>
+      <rect x="96" y="396" width="390" height="13" rx="7" fill="#1c2430" opacity="0.32"/>
+      <rect x="96" y="424" width="300" height="13" rx="7" fill="#1c2430" opacity="0.32"/>
+      <rect x="96" y="474" width="168" height="52" rx="4" fill="#3b6ea8"/>
+      <rect x="284" y="474" width="150" height="52" rx="4" fill="#1c2430" opacity="0.14"/>
+      <rect x="672" y="272" width="440" height="286" rx="8" fill="#3b6ea8" opacity="0.92"/>
+      <circle cx="892" cy="415" r="86" fill="#8fb3d9" opacity="0.62"/>
+      <path d="M700 500 L760 430 L830 470 L920 372 L1010 420 L1080 350" stroke="#f2f5f9" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+      <rect x="96" y="580" width="1016" height="16" rx="8" fill="#1c2430" opacity="0.1"/></g>
+    
+    <rect width="1200" height="900" fill="#1c2430" opacity="0.05"/>
+    <rect x="0" y="0" width="1200" height="120" fill="#eef1f6" opacity="0.55"/>
+    <rect x="0" y="780" width="1200" height="120" fill="#eef1f6" opacity="0.55"/>
+  </g>
+</svg>

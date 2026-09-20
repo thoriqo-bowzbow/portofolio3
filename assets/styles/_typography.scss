@@ -1,0 +1,49 @@
+// =============================================================================
+// Element typography defaults
+// =============================================================================
+@use 'tokens' as *;
+@use 'mixins' as *;
+
+body {
+  font-family: $font-body;
+  font-weight: 400;
+  color: $c-ink;
+}
+
+// Display headings use the editorial face
+h1,
+h2 {
+  font-family: $font-display;
+  font-weight: 400;
+  line-height: normal;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-body;
+  font-weight: 400;
+}
+
+// Utility type roles — used where a semantic element is not appropriate
+.u-display {
+  font-family: $font-display;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.u-body {
+  font-family: $font-body;
+  font-weight: 400;
+  line-height: $lh-secondary;
+}
+
+// The reference's `.md-hacktext` — nowrap + pointer, required by the scramble
+// effect so glyph width changes do not reflow the line.
+.scramble {
+  white-space: nowrap;
+  cursor: pointer;
+  transition: $dur-hover;
+  display: inline-block;
+}

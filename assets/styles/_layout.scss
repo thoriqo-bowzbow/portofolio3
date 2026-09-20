@@ -1,0 +1,27 @@
+// =============================================================================
+// Layout primitives
+// =============================================================================
+@use 'tokens' as *;
+@use 'mixins' as *;
+
+// The single container used by every section (RECON §5)
+.container {
+  @include container;
+}
+
+// App shell — the reference's `.md-app`
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @include sm-down {
+    min-height: 1000px;
+  }
+}
+
+// Baseline section rhythm; sections opt in and then override as needed
+.section {
+  @include section-padding;
+}

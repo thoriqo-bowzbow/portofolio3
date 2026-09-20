@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900" role="img" aria-label="Project preview composition 9">
+  <defs>
+    <clipPath id="clip-h9"><rect width="1200" height="900"/></clipPath>
+  </defs>
+  <g clip-path="url(#clip-h9)">
+    <rect width="1200" height="900" fill="#f2f1ed"/>
+    <g transform="translate(0 0)">
+      <rect x="300" y="252" width="600" height="416" rx="12" fill="#f8f8f5" opacity="0.96"/>
+      <rect x="300" y="252" width="600" height="272" rx="12" fill="#6b6a52" opacity="0.9"/>
+      <circle cx="600" cy="388" r="84" fill="#b3b298" opacity="0.7"/>
+      <rect x="344" y="562" width="280" height="22" rx="11" fill="#26251f" opacity="0.55"/>
+      <rect x="344" y="602" width="180" height="18" rx="9" fill="#26251f" opacity="0.3"/>
+      <rect x="760" y="556" width="96" height="56" rx="6" fill="#6b6a52"/>
+      <rect x="140" y="290" width="120" height="340" rx="10" fill="#26251f" opacity="0.08"/>
+      <rect x="940" y="290" width="120" height="340" rx="10" fill="#26251f" opacity="0.08"/></g>
+    
+    <rect width="1200" height="900" fill="#26251f" opacity="0.05"/>
+    <rect x="0" y="0" width="1200" height="120" fill="#f2f1ed" opacity="0.55"/>
+    <rect x="0" y="780" width="1200" height="120" fill="#f2f1ed" opacity="0.55"/>
+  </g>
+</svg>

@@ -1,0 +1,38 @@
+// =============================================================================
+// Global stylesheet entrypoint
+// Order matters: reset -> typography -> layout -> motion
+//
+// Self-hosted font CSS is injected ahead of this file by nuxt.config.ts so Vite
+// resolves it as CSS rather than as a Sass module (@use cannot target .css).
+// =============================================================================
+
+@use 'reset';
+@use 'typography';
+@use 'layout';
+@use 'motion';
+
+// -----------------------------------------------------------------------------
+// Lenis — smooth scroll surface
+// Lenis needs the document to be scrollable natively; these rules keep it
+// well-behaved while it interpolates.
+// -----------------------------------------------------------------------------
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}

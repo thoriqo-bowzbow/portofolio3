@@ -1,0 +1,208 @@
+{
+  "core": [
+    {
+      "name": "TypeScript",
+      "slug": "typescript"
+    },
+    {
+      "name": "JavaScript",
+      "slug": "javascript"
+    },
+    {
+      "name": "Vue",
+      "slug": "vue"
+    },
+    {
+      "name": "Nuxt",
+      "slug": "nuxt"
+    },
+    {
+      "name": "Pinia",
+      "slug": "pinia"
+    },
+    {
+      "name": "React",
+      "slug": "react"
+    },
+    {
+      "name": "Sass",
+      "slug": "sass"
+    },
+    {
+      "name": "Tailwind CSS",
+      "slug": "tailwind-css"
+    },
+    {
+      "name": "Vite",
+      "slug": "vite"
+    },
+    {
+      "name": "Webpack",
+      "slug": "webpack"
+    },
+    {
+      "name": "GSAP",
+      "slug": "gsap"
+    },
+    {
+      "name": "HTML",
+      "slug": "html"
+    },
+    {
+      "name": "CSS",
+      "slug": "css"
+    },
+    {
+      "name": "Accessibility",
+      "slug": "accessibility"
+    },
+    {
+      "name": "Design Systems",
+      "slug": "design-systems"
+    },
+    {
+      "name": "Testing",
+      "slug": "testing"
+    },
+    {
+      "name": "Vitest",
+      "slug": "vitest"
+    },
+    {
+      "name": "Playwright",
+      "slug": "playwright"
+    },
+    {
+      "name": "Vuex",
+      "slug": "vuex"
+    },
+    {
+      "name": "Vuetify",
+      "slug": "vuetify"
+    },
+    {
+      "name": "Zustand",
+      "slug": "zustand"
+    },
+    {
+      "name": "Rollup",
+      "slug": "rollup"
+    },
+    {
+      "name": "PostCSS",
+      "slug": "postcss"
+    },
+    {
+      "name": "Web Components",
+      "slug": "web-components"
+    }
+  ],
+  "experienced": [
+    {
+      "name": "Node.js",
+      "slug": "node-js"
+    },
+    {
+      "name": "GraphQL",
+      "slug": "graphql"
+    },
+    {
+      "name": "REST APIs",
+      "slug": "rest-apis"
+    },
+    {
+      "name": "PostgreSQL",
+      "slug": "postgresql"
+    },
+    {
+      "name": "Docker",
+      "slug": "docker"
+    },
+    {
+      "name": "CI / CD",
+      "slug": "ci-cd"
+    },
+    {
+      "name": "Nginx",
+      "slug": "nginx"
+    },
+    {
+      "name": "Redis",
+      "slug": "redis"
+    },
+    {
+      "name": "Figma",
+      "slug": "figma"
+    },
+    {
+      "name": "Storybook",
+      "slug": "storybook"
+    },
+    {
+      "name": "MongoDB",
+      "slug": "mongodb"
+    },
+    {
+      "name": "Kubernetes",
+      "slug": "kubernetes"
+    },
+    {
+      "name": "GitLab CI",
+      "slug": "gitlab-ci"
+    },
+    {
+      "name": "Linux",
+      "slug": "linux"
+    }
+  ],
+  "favoured": [
+    {
+      "name": "VS Code",
+      "slug": "vs-code"
+    },
+    {
+      "name": "Git",
+      "slug": "git"
+    },
+    {
+      "name": "GitHub Actions",
+      "slug": "github-actions"
+    },
+    {
+      "name": "ESLint",
+      "slug": "eslint"
+    },
+    {
+      "name": "Prettier",
+      "slug": "prettier"
+    },
+    {
+      "name": "Stylelint",
+      "slug": "stylelint"
+    },
+    {
+      "name": "Lighthouse",
+      "slug": "lighthouse"
+    },
+    {
+      "name": "Notion",
+      "slug": "notion"
+    },
+    {
+      "name": "Linear",
+      "slug": "linear"
+    },
+    {
+      "name": "Raycast",
+      "slug": "raycast"
+    },
+    {
+      "name": "Obsidian",
+      "slug": "obsidian"
+    },
+    {
+      "name": "Excalidraw",
+      "slug": "excalidraw"
+    }
+  ]
+}

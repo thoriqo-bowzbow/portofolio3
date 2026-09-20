@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080" role="img" aria-label="Atmospheric gradient backdrop">
+  <defs>
+    <linearGradient id="skyBody" x1="0" y1="0" x2="0.15" y2="1">
+      <stop offset="0%" stop-color="#33496a"/>
+      <stop offset="22%" stop-color="#45607f"/>
+      <stop offset="44%" stop-color="#54708e"/>
+      <stop offset="63%" stop-color="#44607c"/>
+      <stop offset="82%" stop-color="#33465d"/>
+      <stop offset="100%" stop-color="#22303f"/>
+    </linearGradient>
+    <radialGradient id="bloom" cx="0.38" cy="0.24" r="0.62">
+      <stop offset="0%" stop-color="#fff" stop-opacity="0.20"/>
+      <stop offset="52%" stop-color="#fff" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Even scrim: the hero story blocks can land anywhere in the viewport, so
+         every band has to hold white type. A dip in the middle would leave a
+         light band where a block's heading falls. -->
+    <linearGradient id="scrim" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a1420" stop-opacity="0.46"/>
+      <stop offset="42%" stop-color="#0a1420" stop-opacity="0.34"/>
+      <stop offset="70%" stop-color="#0a1420" stop-opacity="0.38"/>
+      <stop offset="100%" stop-color="#0a1420" stop-opacity="0.54"/>
+    </linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="40"/></filter>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#skyBody)"/>
+  <g filter="url(#soft)"><ellipse cx="650" cy="196" rx="1346" ry="82" fill="#fff" opacity="0.028"/><ellipse cx="396" cy="303" rx="1345" ry="95" fill="#fff" opacity="0.037"/><ellipse cx="1100" cy="406" rx="1139" ry="54" fill="#fff" opacity="0.044"/><ellipse cx="553" cy="491" rx="779" ry="103" fill="#fff" opacity="0.076"/><ellipse cx="214" cy="589" rx="1303" ry="82" fill="#fff" opacity="0.057"/><ellipse cx="1624" cy="674" rx="893" ry="87" fill="#fff" opacity="0.043"/><ellipse cx="732" cy="764" rx="1012" ry="74" fill="#fff" opacity="0.065"/><ellipse cx="1043" cy="861" rx="854" ry="134" fill="#fff" opacity="0.064"/><ellipse cx="1414" cy="966" rx="809" ry="87" fill="#fff" opacity="0.031"/></g>
+  <rect width="1920" height="1080" fill="url(#bloom)"/>
+
+  <!-- Horizon: one soft band only, so the composition has a base without decoration -->
+  <ellipse cx="960" cy="1120" rx="1497.6000000000001" ry="180" fill="#1d2834" opacity="0.34" filter="url(#soft)"/>
+
+  <!-- Scrim: guarantees white type holds contrast wherever a story block lands -->
+  <rect width="1920" height="1080" fill="url(#scrim)"/>
+</svg>

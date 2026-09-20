@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900" role="img" aria-label="Project preview composition 5">
+  <defs>
+    <clipPath id="clip-h5"><rect width="1200" height="900"/></clipPath>
+  </defs>
+  <g clip-path="url(#clip-h5)">
+    <rect width="1200" height="900" fill="#12110f"/>
+    <g transform="translate(0 0)">
+      <rect x="140" y="236" width="920" height="428" rx="10" fill="#1e1c18" opacity="0.96"/>
+      <rect x="184" y="278" width="300" height="26" rx="6" fill="#f0ece4" opacity="0.6"/>
+      <rect x="880" y="272" width="140" height="40" rx="5" fill="#b8863b"/>
+      
+        <rect x="184" y="344" width="836" height="44" rx="5" fill="#f0ece4" opacity="0.095"/>
+        <rect x="208" y="360" width="220" height="13" rx="6" fill="#f0ece4" opacity="0.3"/>
+        <rect x="880" y="360" width="116" height="13" rx="6" fill="#b8863b" opacity="0.55"/>
+        <rect x="184" y="404" width="836" height="44" rx="5" fill="#f0ece4" opacity="0.055"/>
+        <rect x="208" y="420" width="316" height="13" rx="6" fill="#f0ece4" opacity="0.3"/>
+        <rect x="880" y="420" width="116" height="13" rx="6" fill="#b8863b" opacity="0.55"/>
+        <rect x="184" y="464" width="836" height="44" rx="5" fill="#f0ece4" opacity="0.095"/>
+        <rect x="208" y="480" width="412" height="13" rx="6" fill="#f0ece4" opacity="0.3"/>
+        <rect x="880" y="480" width="116" height="13" rx="6" fill="#b8863b" opacity="0.55"/>
+        <rect x="184" y="524" width="836" height="44" rx="5" fill="#f0ece4" opacity="0.055"/>
+        <rect x="208" y="540" width="220" height="13" rx="6" fill="#f0ece4" opacity="0.3"/>
+        <rect x="880" y="540" width="116" height="13" rx="6" fill="#b8863b" opacity="0.55"/>
+        <rect x="184" y="584" width="836" height="44" rx="5" fill="#f0ece4" opacity="0.095"/>
+        <rect x="208" y="600" width="316" height="13" rx="6" fill="#f0ece4" opacity="0.3"/>
+        <rect x="880" y="600" width="116" height="13" rx="6" fill="#b8863b" opacity="0.55"/></g>
+    
+    <rect width="1200" height="900" fill="#f0ece4" opacity="0.05"/>
+    <rect x="0" y="0" width="1200" height="120" fill="#12110f" opacity="0.55"/>
+    <rect x="0" y="780" width="1200" height="120" fill="#12110f" opacity="0.55"/>
+  </g>
+</svg>

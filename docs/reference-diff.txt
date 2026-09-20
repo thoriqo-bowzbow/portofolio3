@@ -1,0 +1,55 @@
+
+  PROPERTY                          IMPL                    REFERENCE               Δ           RESULT
+  --------------------------------------------------------------------------------------------------------
+  doc.scrollHeight                  15314                   15217                   97          MISMATCH
+  section hero height               4500                    4500                    0           ok
+  section about height              2965                    2820                    145         ok
+  section experience height         3759                    3801                    -42         ok
+  section highlights height         910                     910                     0           ok
+  section testimonials height       1151                    1178                    -27         ok
+  section contact height            1129.02                 1108                    21.02       ok
+  section footer height             900                     900                     0           ok
+  container width                   992                     992                     0           ok
+  container left                    224                     224                     0           ok
+  about grid columns                288.594px 623.406px     288.594px 623.406px                 ok
+  about grid gap                    50px                    50px                                ok
+  about title size                  36px                    36px                                ok
+  body copy size                    15px                    15px                                ok
+  body copy weight                  500                     500                                 ok
+  body copy line-height             27px                    27px                                ok
+  body copy colour (revealed)       rgba(37, 35, 36, 0.2)   rgb(37, 35, 36)                     MISMATCH
+  stack box padding                 70px                    70px                                ok
+  stack title size                  26px                    26px                                ok
+  stack tile width                  65                      65                      0           ok
+  stack tile height                 65                      65                      0           ok
+  experience row width              962                     962                     0           ok
+  experience row margin             0px 0px 100px           0px 0px 100px                       ok
+  experience org size               22px                    22px                                ok
+  experience dates size             26px                    26px                                ok
+  experience dates weight           300                     300                                 ok
+  experience dates colour           rgba(37, 35, 36, 0.5)   rgba(37, 35, 36, 0.5)               ok
+  projects gap                      50px                    50px                                ok
+  projects margin                   40px 0px 150px          40px 0px 150px                      ok
+  gallery gap                       10px                    10px                                ok
+  gallery card width                148.34                  148.34                  0           ok
+  gallery card height               170                     170                     0           ok
+  testimonial card height           300                     300                     0           ok
+  contact card padding              30px                    30px                                ok
+  contact card width                301.7                   301.7                   0           ok
+  contact form width                400                     400                     0           ok
+  footer quote size                 36px                    36px                                ok
+  footer quote weight               700                     700                                 ok
+  footer author size                20px                    20px                                ok
+  footer author colour              rgba(37, 35, 36, 0.4)   rgba(37, 35, 36, 0.4)               ok
+  footer text width                 600                     600                     0           ok
+  footer text size                  18px                    18px                                ok
+  nav link size                     14px                    14px                                ok
+  nav link colour                   rgb(255, 255, 255)      rgb(255, 255, 255)                  ok
+  hero name size                    212px                   212px                               ok
+  hero card width                   650                     650                     0           ok
+  hero card size                    14px                    14px                                ok
+  hero card weight                  500                     500                                 ok
+  hero card line-height             25.2px                  25.2px                              ok
+
+  47 matched, 2 mismatched, 49 checks total
+

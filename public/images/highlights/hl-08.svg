@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900" role="img" aria-label="Project preview composition 7">
+  <defs>
+    <clipPath id="clip-h7"><rect width="1200" height="900"/></clipPath>
+  </defs>
+  <g clip-path="url(#clip-h7)">
+    <rect width="1200" height="900" fill="#f6efec"/>
+    <g transform="translate(0 0)">
+      <rect x="120" y="250" width="960" height="400" rx="10" fill="#2f211b" opacity="0.07"/>
+      <rect x="176" y="510" width="52" height="90" rx="4" fill="#b5563a" opacity="0.42"/><rect x="258" y="457" width="52" height="143" rx="4" fill="#b5563a" opacity="0.58"/><rect x="340" y="404" width="52" height="196" rx="4" fill="#b5563a" opacity="0.74"/><rect x="422" y="351" width="52" height="249" rx="4" fill="#b5563a" opacity="0.8999999999999999"/><rect x="504" y="298" width="52" height="302" rx="4" fill="#b5563a" opacity="0.42"/><rect x="586" y="465" width="52" height="135" rx="4" fill="#b5563a" opacity="0.58"/><rect x="668" y="412" width="52" height="188" rx="4" fill="#b5563a" opacity="0.74"/><rect x="750" y="359" width="52" height="241" rx="4" fill="#b5563a" opacity="0.8999999999999999"/><rect x="832" y="306" width="52" height="294" rx="4" fill="#b5563a" opacity="0.42"/><rect x="914" y="473" width="52" height="127" rx="4" fill="#b5563a" opacity="0.58"/><rect x="996" y="420" width="52" height="180" rx="4" fill="#b5563a" opacity="0.74"/>
+      <path d="M176 520 L272 452 L368 486 L464 392 L560 430 L656 340 L752 386 L848 300 L944 340 L1024 288"
+            stroke="#2f211b" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.72"/>
+      <rect x="176" y="286" width="190" height="20" rx="10" fill="#2f211b" opacity="0.5"/>
+      <rect x="900" y="278" width="176" height="44" rx="6" fill="#b5563a"/></g>
+    
+    <rect width="1200" height="900" fill="#2f211b" opacity="0.05"/>
+    <rect x="0" y="0" width="1200" height="120" fill="#f6efec" opacity="0.55"/>
+    <rect x="0" y="780" width="1200" height="120" fill="#f6efec" opacity="0.55"/>
+  </g>
+</svg>

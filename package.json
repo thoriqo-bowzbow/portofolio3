@@ -1,0 +1,36 @@
+{
+  "name": "portofolio3",
+  "private": true,
+  "type": "module",
+  "description": "Personal portfolio — Nuxt 3, Vue 3, TypeScript, SCSS, GSAP, Lenis",
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "typecheck": "nuxt typecheck",
+    "assets": "node scripts/generate-assets.mjs",
+    "audit:responsive": "node scripts/audit-responsive.mjs",
+    "compare": "node scripts/compare-reference.mjs",
+    "verify": "npm run typecheck && npm run build"
+  },
+  "dependencies": {
+    "@fontsource-variable/playfair-display": "^5.1.1",
+    "@fontsource/montserrat": "^5.1.1",
+    "gsap": "^3.12.5",
+    "lenis": "^1.1.18",
+    "nuxt": "^3.14.1592",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "sass": "^1.83.0",
+    "typescript": "^5.7.2",
+    "vue-tsc": "^2.1.10"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
