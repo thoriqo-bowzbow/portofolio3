@@ -25,6 +25,9 @@ useSmoothScroll()
 
     <SiteFooter />
     <SiteLoader />
+
+    <!-- Teleported to <body>, so it overlays the shell regardless of stacking. -->
+    <RequestModal />
   </div>
 </template>
 

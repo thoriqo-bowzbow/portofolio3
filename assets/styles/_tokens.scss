@@ -131,6 +131,10 @@ $ease-overshoot: cubic-bezier(0, 1.01, 0, 2);
 $dur-hover: 0.3s;
 $dur-reveal: 0.5s;
 $dur-filter: 0.6s;
+// The modal's per-phase duration. Measured from the reference at 600ms for the
+// scrim fade and 600ms for the panel rise/fade, played in sequence rather than
+// together — see docs/P1_MODAL_REPORT.md.
+$dur-modal: 0.6s;
 $dur-card: 0.8s;
 $dur-enter: 1s;
 $dur-loader: 2s;

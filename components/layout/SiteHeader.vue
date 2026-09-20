@@ -14,6 +14,7 @@ import { navigation, primaryCta } from '~/data/navigation'
 
 const { isScrolled } = useScrollState()
 const { goTo } = useAnchorNav()
+const { open: openRequestModal } = useRequestModal()
 
 const isOpen = ref(false)
 const isClosing = ref(false)
@@ -105,7 +106,7 @@ onBeforeUnmount(() => {
       </nav>
 
       <div class="site-header__actions">
-        <MdButton :label="primaryCta.label" @click="navigate(primaryCta.target)" />
+        <MdButton :label="primaryCta.label" @click="openRequestModal" />
       </div>
     </div>
 
@@ -115,7 +116,7 @@ onBeforeUnmount(() => {
     >
       <div class="mobile-mark__content">
         <div class="mobile-mark__actions">
-          <MdButton :label="primaryCta.label" @click="navigate(primaryCta.target)" />
+          <MdButton :label="primaryCta.label" @click="openRequestModal" />
         </div>
 
         <nav class="mobile-mark__links" aria-label="Primary mobile">
