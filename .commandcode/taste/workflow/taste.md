@@ -9,6 +9,7 @@
 - Pushes to GitHub over HTTPS rather than SSH; states the method explicitly when delegating a push. Confidence: 0.8
 - Provides credentials (e.g. a personal access token) inline in the request so the push can be executed immediately. Confidence: 0.65
 - Wants commits grouped by feature ("sesuai fiturnya") — multiple scoped commits rather than one blanket commit for all pending changes. Confidence: 0.75
+- Asks for the pending changes to be reviewed (diffs and new files) before they are staged and committed, rather than committed blindly. Confidence: 0.6
 
 ## Communication
 - Writes requests in Indonesian (Bahasa Indonesia) and expects responses in the same language. Confidence: 0.7
