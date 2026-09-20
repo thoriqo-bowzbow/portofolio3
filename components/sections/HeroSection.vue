@@ -28,6 +28,17 @@ const { isReady } = useSiteReady()
 const root = ref<HTMLElement | null>(null)
 const wordRef = ref<HTMLElement | null>(null)
 const scrollerRef = ref<HTMLElement | null>(null)
+const videoRef = ref<HTMLVideoElement | null>(null)
+
+/**
+ * Scroll-scrubbed atmosphere. The video's `currentTime` tracks hero scroll
+ * progress one-to-one; it is never played. Falls back silently to the SVG
+ * backdrop under reduced motion or Save-Data.
+ */
+const { isActive: videoActive } = useScrubVideo(videoRef, scrollerRef, {
+  src: '/media/hero-atmosphere.webm',
+  srcSmall: '/media/hero-atmosphere-540.webm'
+})
 
 /** Story block offsets, matching the reference's 180vh / 280vh / 380vh. */
 const blockOffsets = ['180vh', '280vh', '380vh'] as const
@@ -65,7 +76,11 @@ onMounted(() => {
   <section id="main" ref="root" class="hero">
     <div class="hero__content">
       <div ref="scrollerRef" class="hero__scroller">
-        <!-- Pinned atmosphere: stays for the whole 500vh -->
+        <!-- Pinned atmosphere: stays for the whole 500vh.
+             Two stacked layers — the SVG paints immediately and remains as the
+             poster/fallback, the scroll-scrubbed video fades in above it once it
+             has data. Both are absolutely positioned, so neither contributes to
+             layout and there is no shift when the video arrives. -->
         <div class="hero__atmosphere">
           <img
             class="hero__backdrop"
@@ -75,6 +90,20 @@ onMounted(() => {
             fetchpriority="high"
             decoding="async"
           >
+
+          <video
+            ref="videoRef"
+            class="hero__video"
+            :class="{ 'is-active': videoActive }"
+            poster="/images/hero-backdrop.svg"
+            muted
+            playsinline
+            preload="auto"
+            disablepictureinpicture
+            disableremoteplayback
+            aria-hidden="true"
+            tabindex="-1"
+          />
         </div>
 
         <div class="hero__holder">
@@ -152,6 +181,23 @@ onMounted(() => {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+// Scroll-scrubbed atmosphere. Sits directly above the poster SVG in the same
+// stacking level; fades in only once it has decoded a frame, so the poster is
+// never briefly replaced by an empty box.
+.hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+
+  &.is-active {
+    opacity: 1;
+  }
 }
 
 // -----------------------------------------------------------------------------

@@ -11,6 +11,7 @@
     "postinstall": "nuxt prepare",
     "typecheck": "nuxt typecheck",
     "assets": "node scripts/generate-assets.mjs",
+    "assets:hero-video": "node scripts/generate-hero-sequence.mjs",
     "audit:responsive": "node scripts/audit-responsive.mjs",
     "compare": "node scripts/compare-reference.mjs",
     "verify": "npm run typecheck && npm run build"
