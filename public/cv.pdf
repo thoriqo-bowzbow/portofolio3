@@ -1,0 +1,65 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [6 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+5 0 obj
+<< /Length 2739 >>
+stream
+BT /F1 22 Tf 0 g 56 785.89 Td (Kamran Yusupov) Tj ET
+BT /F2 11 Tf 0 g 56 759.89 Td (Frontend Engineer  ∑  Lisbon, Portugal) Tj ET
+BT /F2 10 Tf 0 g 56 743.89 Td (hello@kamran.dev  ∑  kamran.dev) Tj ET
+0.8 w 0.7 G 56 727.89 m 539.28 727.89 l S
+BT /F2 10 Tf 0 g 56 709.89 Td (Frontend engineer who ships interfaces that feel inevitable. Eight years across product) Tj ET
+BT /F2 10 Tf 0 g 56 695.89 Td (teams, design systems and platform work, with a bias toward boring technology and measurable) Tj ET
+BT /F2 10 Tf 0 g 56 681.89 Td (performance.) Tj ET
+BT /F1 13 Tf 0 g 56 657.89 Td (Experience) Tj ET
+BT /F1 11 Tf 0 g 56 639.89 Td (Northline   2022 - Present) Tj ET
+BT /F2 10 Tf 0 g 56 624.89 Td (Lead frontend across three concurrent booking and logistics platforms. Own the architecture,) Tj ET
+BT /F2 10 Tf 0 g 56 610.89 Td (the design system and the release process.) Tj ET
+BT /F2 10 Tf 0 g 56 596.89 Td (- Rebuilt the booking flow around a single state machine, cutting median completion time) Tj ET
+BT /F2 10 Tf 0 g 56 582.89 Td (  by roughly a third.) Tj ET
+BT /F2 10 Tf 0 g 56 568.89 Td (- Introduced a shared token layer so four products inherit one visual language.) Tj ET
+BT /F2 10 Tf 0 g 56 554.89 Td (- Took the worst dashboard from 4.4s to 1.2s first interaction on a mid-tier laptop.) Tj ET
+BT /F1 11 Tf 0 g 56 532.89 Td (Cobalt Labs   2019 - 2022) Tj ET
+BT /F2 10 Tf 0 g 56 517.89 Td (Second frontend hire at a Series B SaaS company. Consolidated four competing visual) Tj ET
+BT /F2 10 Tf 0 g 56 503.89 Td (languages into one system.) Tj ET
+BT /F2 10 Tf 0 g 56 489.89 Td (- Built the component library and its documentation site, still in use four years later.) Tj ET
+BT /F2 10 Tf 0 g 56 475.89 Td (- Moved a single bundle to route-level code splitting: 4.1s to 1.3s first interaction.) Tj ET
+BT /F2 10 Tf 0 g 56 461.89 Td (- Ran an incremental framework migration with weekly production releases and no rollback.) Tj ET
+BT /F1 11 Tf 0 g 56 439.89 Td (Independent practice   2017 - 2019) Tj ET
+BT /F2 10 Tf 0 g 56 424.89 Td (Scoped engagements with founders and small product teams, taken end to end.) Tj ET
+BT /F2 10 Tf 0 g 56 410.89 Td (- Delivered marketing sites, storefronts, booking systems and internal tools.) Tj ET
+BT /F2 10 Tf 0 g 56 396.89 Td (- Two client sites from this period are still running largely untouched.) Tj ET
+BT /F1 13 Tf 0 g 56 374.89 Td (Skills) Tj ET
+BT /F2 10 Tf 0 g 56 356.89 Td (TypeScript, Vue 3, Nuxt, React ∑ SCSS, design tokens, component systems ∑ GSAP,) Tj ET
+BT /F2 10 Tf 0 g 56 342.89 Td (ScrollTrigger, motion design ∑ Vite, Webpack, CI bundle budgets ∑ Accessibility, visual) Tj ET
+BT /F2 10 Tf 0 g 56 328.89 Td (regression testing ∑ Performance profiling and Core Web Vitals) Tj ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 5 0 R >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000121 00000 n 
+0000000223 00000 n 
+0000000320 00000 n 
+0000003110 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+3252
+%%EOF
