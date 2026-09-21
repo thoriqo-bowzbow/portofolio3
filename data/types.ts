@@ -61,6 +61,19 @@ export interface Role {
   projects: Project[]
 }
 
+/**
+ * One qualification, rendered through the same row as an employment entry.
+ *
+ * The reference has no education band, so rather than add a section the CV's
+ * education is presented inside the existing Experience timeline.
+ */
+export interface Education {
+  institution: string
+  context: string
+  period: string
+  result: string
+}
+
 export interface Highlight {
   title: string
   description: string

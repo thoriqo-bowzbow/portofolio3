@@ -34,8 +34,13 @@ const { open: openReviewModal } = useReviewModal()
     <div class="testimonials__content container">
       <div class="testimonials__titling">
         <SectionTitle title="What people say" />
+        <!--
+          The previous subtitle said "Feedback from the teams and clients I have
+          worked alongside" — untrue while the mosaic is empty, and it contradicted
+          the empty state directly beneath it.
+        -->
         <p class="testimonials__subtitle">
-          Feedback from the teams and clients I have worked alongside.
+          Reviews from the people I have worked with, published with their permission.
         </p>
 
         <MdButton
@@ -49,7 +54,17 @@ const { open: openReviewModal } = useReviewModal()
       <div ref="introRef" class="testimonials__info">
         <p class="testimonials__info-text">{{ testimonialsIntro }}</p>
 
-        <div ref="listRef" class="testimonials__list">
+        <!--
+          Empty state. The CV lists no referees or quotations, and fabricated
+          testimonials are the most damaging thing a portfolio can carry, so the
+          mosaic stays empty and says so. The staircase markup is untouched for
+          when real reviews arrive.
+        -->
+        <p v-if="!testimonials.length" class="testimonials__empty">
+          No reviews published yet — the form is open if you would like to leave one.
+        </p>
+
+        <div v-else ref="listRef" class="testimonials__list">
           <TestimonialCard
             v-for="item in testimonials"
             :key="item.name"
@@ -102,6 +117,16 @@ const { open: openReviewModal } = useReviewModal()
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
+  margin: 50px 0 0;
+}
+
+// Empty state. The section keeps its two-column split and its full height so the
+// page's section rhythm is unchanged while the mosaic has no cards to show.
+.testimonials__empty {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 160%;
+  color: $c-ink-50;
   margin: 50px 0 0;
 }
 

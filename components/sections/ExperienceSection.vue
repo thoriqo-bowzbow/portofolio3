@@ -11,8 +11,24 @@
  * role replaces the outgoing one as you scroll.
  */
 import { experience } from '~/data/experience'
+import { education } from '~/data/education'
 
 const titlingRef = ref<HTMLElement | null>(null)
+
+/**
+ * Education is presented as one more entry in the same timeline rather than as a
+ * new band: the reference has no education section, and the CV supplies a single
+ * qualification that fits the row's shape exactly. The layout is untouched.
+ */
+const educationRows = computed(() =>
+  education.map((entry) => ({
+    organisation: entry.institution,
+    context: entry.context,
+    period: entry.period,
+    summary: [entry.result],
+    projects: []
+  }))
+)
 </script>
 
 <template>
@@ -23,6 +39,13 @@ const titlingRef = ref<HTMLElement | null>(null)
       </div>
 
       <ExperienceRow v-for="role in experience" :key="role.organisation" :role="role" />
+
+      <ExperienceRow
+        v-for="entry in educationRows"
+        :key="entry.organisation"
+        :role="entry"
+        label="Education"
+      />
     </div>
   </section>
 </template>

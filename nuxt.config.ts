@@ -47,7 +47,7 @@ export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: { lang: 'en' },
-      title: 'Kamran Yusupov — Frontend Engineer',
+      title: 'Thoriqo Salafu Sholihin — IT Support Specialist & Network Engineer',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -55,14 +55,17 @@ export default defineNuxtConfig({
         {
           name: 'description',
           content:
-            'Frontend engineer building interfaces where type, spacing and motion agree with each other. Design systems, performance and the details nobody notices when they are right.'
+            'IT Support Specialist and Network Engineer based in Jakarta, Indonesia — end-user support, network infrastructure and operational administration.'
         },
         { name: 'robots', content: 'index, follow' },
-        { property: 'og:title', content: 'Kamran Yusupov — Frontend Engineer' },
+        {
+          property: 'og:title',
+          content: 'Thoriqo Salafu Sholihin — IT Support Specialist & Network Engineer'
+        },
         {
           property: 'og:description',
           content:
-            'Design systems, performance and the details nobody notices when they are right.'
+            'End-user support, network infrastructure and operational administration, based in Jakarta, Indonesia.'
         },
         { property: 'og:type', content: 'website' }
       ],

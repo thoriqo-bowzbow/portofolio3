@@ -1,13 +1,14 @@
 /**
- * Emits `public/cv.pdf` — the file the hero's "Download CV" action links to.
+ * Emits `public/cv.pdf` — the file every "Download CV" action links to.
  *
- * That link was a 404: the button shipped pointing at `/cv.pdf` and nothing ever
- * wrote the file. Rather than remove the action, this builds the document from
- * the same `data/profile.ts` and `data/experience.ts` the site renders, so the
- * download cannot drift from the page.
+ * Content mirrors the site's own data modules (`data/profile.ts`,
+ * `data/experience.ts`, `data/education.ts`, `data/stack.ts`) so the download
+ * cannot drift from the page. Every line is taken from the supplied CV: the CV
+ * lists roles, employers and dates without descriptions, and it lists no projects,
+ * so this document states those same facts and no others.
  *
  * Written as a plain PDF by hand rather than through a library: the document is
- * two pages of Helvetica text, and a dependency for that would be more surface
+ * one page of Helvetica text, and a dependency for that would be more surface
  * area than the generator.
  *
  *   node scripts/generate-cv.mjs
@@ -19,58 +20,43 @@ import { fileURLToPath } from 'node:url'
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 
 // ---------------------------------------------------------------------------
-// Content — mirrors data/profile.ts and data/experience.ts
+// Content — mirrors the data modules above
 // ---------------------------------------------------------------------------
 const profile = {
-  name: 'Kamran Yusupov',
-  role: 'Frontend Engineer',
-  location: 'Lisbon, Portugal',
-  contact: 'hello@kamran.dev',
-  site: 'kamran.dev',
-  summary:
-    'Frontend engineer who ships interfaces that feel inevitable. Eight years across product teams, design systems and platform work, with a bias toward boring technology and measurable performance.'
+  name: 'Thoriqo Salafu Sholihin',
+  role: 'IT Support Specialist & Network Engineer',
+  /**
+   * The CV's own header says Jakarta Barat and its summary says Jakarta Timur.
+   * The document therefore states the city only, matching the site, rather than
+   * silently picking one regency.
+   */
+  location: 'Jakarta, Indonesia',
+  email: 'thoriqosalafusholihin@gmail.com',
+  phone: '+62 851-1102-0740',
+  links: 'linkedin.com/in/thoriqo  ·  github.com/thoriqo-bowzbow'
 }
 
 const experience = [
-  {
-    org: 'Northline',
-    period: '2022 — Present',
-    role: 'Lead frontend across three concurrent booking and logistics platforms. Own the architecture, the design system and the release process.',
-    bullets: [
-      'Rebuilt the booking flow around a single state machine, cutting median completion time by roughly a third.',
-      'Introduced a shared token layer so four products inherit one visual language.',
-      'Took the worst dashboard from 4.4s to 1.2s first interaction on a mid-tier laptop.'
-    ]
-  },
-  {
-    org: 'Cobalt Labs',
-    period: '2019 — 2022',
-    role: 'Second frontend hire at a Series B SaaS company. Consolidated four competing visual languages into one system.',
-    bullets: [
-      'Built the component library and its documentation site, still in use four years later.',
-      'Moved a single bundle to route-level code splitting: 4.1s to 1.3s first interaction.',
-      'Ran an incremental framework migration with weekly production releases and no rollback.'
-    ]
-  },
-  {
-    org: 'Independent practice',
-    period: '2017 — 2019',
-    role: 'Scoped engagements with founders and small product teams, taken end to end.',
-    bullets: [
-      'Delivered marketing sites, storefronts, booking systems and internal tools.',
-      'Two client sites from this period are still running largely untouched.'
-    ]
-  }
+  { title: 'IT Support', org: 'PT. Wahana Harta Nusantara', period: 'April — September 2026' },
+  { title: 'Network Engineer & Technical Lead', org: 'Venous Group', period: 'June 2024 — December 2025' },
+  { title: 'Admin Operasional', org: 'CV. Kahe Group', period: 'October 2023 — June 2024' }
+]
+
+const education = [
+  { school: 'SMA Negeri 1 Anjatan', track: 'IPS', period: 'July 2020 — May 2023', result: 'Ujian Sekolah 89.14/100' }
 ]
 
 const skills = [
-  'TypeScript, Vue 3, Nuxt, React',
-  'SCSS, design tokens, component systems',
-  'GSAP, ScrollTrigger, motion design',
-  'Vite, Webpack, CI bundle budgets',
-  'Accessibility, visual regression testing',
-  'Performance profiling and Core Web Vitals'
+  'Networking — TCP/IP, subnetting, routing, switching, LAN/WLAN, MikroTik, Ruijie Reyee',
+  'Cabling — UTP, fibre optic, fusion splicer, OTDR, OPM',
+  'Systems — Windows 10/11, Linux/Ubuntu, macOS, local server administration',
+  'Tooling — Git, CI/CD, Docker, Python scripting, backup and recovery',
+  'Integration — AI/API integration, agentic AI, MCP and plugin integration',
+  'Support — helpdesk, IT asset management, PC and laptop repair and assembly',
+  'Peripherals — network printer, barcode, scanner, CCTV/NVR/DVR'
 ]
+
+const languages = 'Indonesian  ·  English'
 
 // ---------------------------------------------------------------------------
 // Layout — A4 at 72dpi, 12pt baseline grid
@@ -89,6 +75,7 @@ const esc = (s) =>
     .replace(/[\u2014\u2013]/g, '-')
     .replace(/[\u2019\u2018]/g, "'")
     .replace(/[\u201C\u201D]/g, '"')
+    .replace(/\u00b7/g, '-')
 
 /** Wraps at roughly 92 characters, close to the measure at 10pt Helvetica. */
 function wrap(text, width = 92) {
@@ -107,7 +94,7 @@ function wrap(text, width = 92) {
   return lines
 }
 
-/** A page is a list of { font, size, gap, text } runs. */
+/** A page is a list of { font, size, text, y } runs, plus rules. */
 const pages = []
 let page = []
 let y = PAGE_H - MARGIN
@@ -133,27 +120,35 @@ const rule = () => {
 }
 
 push('F1', 22, profile.name, 26)
-push('F2', 11, `${profile.role}  ·  ${profile.location}`, 16)
-push('F2', 10, `${profile.contact}  ·  ${profile.site}`, 20)
+push('F2', 11, profile.role, 16)
+push('F2', 10, profile.location, 14)
+push('F2', 10, `${profile.email}  ·  ${profile.phone}`, 14)
+push('F2', 10, profile.links, 20)
 rule()
-
-for (const l of wrap(profile.summary)) push('F2', 10, l)
-y -= 10
 
 push('F1', 13, 'Experience', 18)
 for (const job of experience) {
-  push('F1', 11, `${job.org}   ${job.period}`, 15)
-  for (const l of wrap(job.role)) push('F2', 10, l)
-  for (const b of job.bullets) {
-    for (const [i, l] of wrap(b, 88).entries()) {
-      push('F2', 10, i === 0 ? `- ${l}` : `  ${l}`, i === 0 ? LINE : LINE)
-    }
-  }
-  y -= 8
+  push('F1', 11, job.title, 14)
+  push('F2', 10, `${job.org}   ${job.period}`, 20)
 }
+y -= 6
+
+push('F1', 13, 'Education', 18)
+for (const ed of education) {
+  push('F1', 11, ed.school, 14)
+  push('F2', 10, `${ed.track}   ${ed.period}`, 14)
+  push('F2', 10, ed.result, 20)
+}
+y -= 6
 
 push('F1', 13, 'Skills', 18)
-for (const l of wrap(skills.join('  ·  '))) push('F2', 10, l)
+for (const group of skills) {
+  for (const l of wrap(group, 88)) push('F2', 10, l)
+}
+y -= 6
+
+push('F1', 13, 'Languages', 18)
+push('F2', 10, languages, 20)
 
 pages.push(page)
 page = []

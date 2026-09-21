@@ -93,9 +93,16 @@ const props = defineProps<{
   font-style: normal;
   font-weight: 300;
   line-height: 160%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  /*
+   * Wraps rather than truncating.
+   *
+   * The reference sets `nowrap` + `text-overflow: ellipsis` here, which is safe
+   * for its short values but not for a real one: `thoriqosalafusholihin@gmail.com`
+   * measures 201px against a 187px box, so the address rendered as
+   * "thoriqosalafusholihin@gma…" — a contact detail nobody can act on. Breaking
+   * the long token keeps it readable and leaves short values on one line.
+   */
+  overflow-wrap: anywhere;
 }
 
 @include md-down {

@@ -1,8 +1,8 @@
 export default defineAppConfig({
   seo: {
-    siteName: 'Kamran Yusupov — Frontend Engineer',
+    siteName: 'Thoriqo Salafu Sholihin — IT Support & Network Engineer',
     description:
-      'Frontend engineer building interfaces where type, spacing and motion agree with each other. Design systems, performance and the details nobody notices when they are right.',
+      'IT Support Specialist and Network Engineer based in Jakarta, Indonesia — end-user support, network infrastructure and operational administration.',
     themeColor: '#fafafa'
   }
 })

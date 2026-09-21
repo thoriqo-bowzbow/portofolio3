@@ -10,6 +10,8 @@ import type { Role } from '~/data/types'
 
 const props = defineProps<{
   role: Role
+  /** Optional small tag above the organisation, e.g. "Education". */
+  label?: string
 }>()
 
 const root = ref<HTMLElement | null>(null)
@@ -23,6 +25,7 @@ useRevealChildren(bodyRef, '.project-tile', { threshold: 0.05 })
 <template>
   <div ref="root" class="experience-row">
     <div class="experience-row__title">
+      <p v-if="props.label" class="experience-row__label">{{ props.label }}</p>
       <h3 class="experience-row__org">{{ props.role.organisation }}</h3>
       <p class="experience-row__context">{{ props.role.context }}</p>
       <p class="experience-row__dates">{{ props.role.period }}</p>
@@ -35,7 +38,7 @@ useRevealChildren(bodyRef, '.project-tile', { threshold: 0.05 })
         class="experience-row__summary"
       >{{ line }}</p>
 
-      <div class="experience-row__projects">
+      <div v-if="props.role.projects.length" class="experience-row__projects">
         <ProjectTile
           v-for="project in props.role.projects"
           :key="project.name"
@@ -65,6 +68,17 @@ useRevealChildren(bodyRef, '.project-tile', { threshold: 0.05 })
 
 .experience-row__title {
   align-self: flex-start;
+}
+
+// Small uppercase tag above the organisation, used to mark the education entry.
+// Sized to sit under the org name's optical weight rather than compete with it.
+.experience-row__label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $c-ink-30;
+  margin: 0 0 6px;
 }
 
 .experience-row__org {

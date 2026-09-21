@@ -412,20 +412,14 @@ function stackMark(name, hue) {
 
 // =============================================================================
 // 4b. Project monograms — 120×50 wordmarks for the experience tiles.
-//     The reference normalises each project's real logo into this box; these are
-//     original marks for original projects.
+//
+// The generator used to emit nine marks named after the demo identity's invented
+// products (Atlas Booking, Ledger, Waypoint, …). The CV lists no projects, so the
+// project data is empty and those marks had no consumer; the invented product
+// names were removed with them rather than left in the repository. When real
+// projects are added, restore this section with their actual names —
+// `projectMark()` below is unchanged and still correct.
 // =============================================================================
-const PROJECTS = [
-  'Atlas Booking',
-  'Ledger',
-  'Waypoint',
-  'Console',
-  'Beacon',
-  'Relay',
-  'Harbour Goods',
-  'Kestrel',
-  'Fieldnote'
-]
 
 function projectMark(name, index) {
   const initials = name
@@ -503,30 +497,31 @@ function wordmark(rel, fill) {
 
 // =============================================================================
 // 7. Stack catalogue — names the data layer also consumes, so the two cannot drift
+//
+// Migrated from the supplied CV. The entries are the CV's own skill list, split
+// into three groups for the section's three boxes; no skill is added, and none is
+// dropped. Group names describe the CV's own categories rather than the
+// reference's ("Loved using" makes no sense for CCTV/NVR/DVR).
 // =============================================================================
 const STACK = {
-  core: [
-    ['TypeScript', 214], ['JavaScript', 45], ['Vue', 152], ['Nuxt', 148],
-    ['Pinia', 45], ['React', 200], ['Sass', 330], ['Tailwind CSS', 190],
-    ['Vite', 268], ['Webpack', 210], ['GSAP', 96], ['HTML', 18],
-    ['CSS', 205], ['Accessibility', 250], ['Design Systems', 280], ['Testing', 8],
-    ['Vitest', 90], ['Playwright', 160], ['Vuex', 152], ['Vuetify', 178],
-    ['Zustand', 30], ['Rollup', 12], ['PostCSS', 322], ['Web Components', 224]
+  networking: [
+    ['TCP/IP', 210], ['LAN / WLAN', 190], ['Subnetting', 200], ['Routing', 206],
+    ['Switching', 214], ['MikroTik', 150], ['Ruijie Reyee', 168], ['UTP', 226],
+    ['Fiber optic', 232], ['Fusion Splicer', 236], ['OTDR', 240], ['OPM', 244]
   ],
-  experienced: [
-    ['Node.js', 118], ['GraphQL', 300], ['REST APIs', 190], ['PostgreSQL', 222],
-    ['Docker', 205], ['CI / CD', 24], ['Nginx', 140], ['Redis', 6],
-    ['Figma', 275], ['Storybook', 330], ['MongoDB', 140], ['Kubernetes', 220],
-    ['GitLab CI', 22], ['Linux', 200]
+  systems: [
+    ['Git', 12], ['CI / CD', 24], ['Docker', 205], ['Linux', 200],
+    ['Windows 10/11', 220], ['macOS', 260], ['Python', 100], ['AI / API integration', 280],
+    ['Agentic AI', 290], ['MCP', 296], ['Local server administration', 204], ['Backup / recovery', 8]
   ],
-  favoured: [
-    ['VS Code', 205], ['Git', 12], ['GitHub Actions', 265], ['ESLint', 275],
-    ['Prettier', 190], ['Stylelint', 320], ['Lighthouse', 30], ['Notion', 0],
-    ['Linear', 250], ['Raycast', 8], ['Obsidian', 268], ['Excalidraw', 12]
+  support: [
+    ['Helpdesk', 190], ['IT asset management', 198], ['PC repair', 30],
+    ['Laptop assembly', 40], ['Network printer', 50], ['Barcode scanner', 60],
+    ['CCTV / NVR / DVR', 16]
   ]
 }
 
-const STACK_TINTS = { core: 214, experienced: 275, favoured: 160 }
+const STACK_TINTS = { networking: 210, systems: 275, support: 160 }
 
 const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 
@@ -572,10 +567,6 @@ HIGHLIGHT_KINDS.forEach((kind, i) => {
 })
 
 for (let i = 1; i <= 6; i++) write(`images/testimonials/portrait-${String(i).padStart(2, '0')}.svg`, portrait(i))
-
-PROJECTS.forEach((name, i) => {
-  write(`images/project-marks/${slugify(name)}.svg`, projectMark(name, i))
-})
 
 Object.entries(icons).forEach(([name, svg]) => write(`icons/${name}.svg`, svg))
 

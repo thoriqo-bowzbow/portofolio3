@@ -18,15 +18,29 @@ useRevealChildren(gridRef, '.highlight-tile', { threshold: 0.08 })
     <div class="highlights__content container">
       <div class="highlights__titling">
         <SectionTitle title="Selected work" />
+        <!--
+          The previous subtitle described booking platforms and internal consoles,
+          which were the demo identity's invented products. The CV lists no
+          projects, so the copy now describes what the section will hold rather
+          than claiming work that is not there.
+        -->
         <p class="highlights__subtitle">
-          A cross-section of the products I have designed and built — from booking platforms to
-          internal consoles.
+          Case studies are added here as they are cleared for publication.
         </p>
       </div>
 
-      <div ref="gridRef" class="highlights__grid">
+      <div v-if="highlights.length" ref="gridRef" class="highlights__grid">
         <HighlightTile v-for="item in highlights" :key="item.title" :item="item" />
       </div>
+
+      <!--
+        Empty state. The CV lists no projects and this repository must not invent
+        any, so rather than leave a collapsed grid the section says so plainly.
+        The mosaic markup above is untouched for when real entries arrive.
+      -->
+      <p v-else class="highlights__empty">
+        No case studies published yet.
+      </p>
     </div>
   </section>
 </template>
@@ -58,6 +72,16 @@ useRevealChildren(gridRef, '.highlight-tile', { threshold: 0.08 })
   gap: 10px;
   width: 100%;
   overflow: hidden;
+}
+
+// Empty state: occupies the grid's place in the split so the section keeps its
+// two-column shape instead of collapsing to a bare heading.
+.highlights__empty {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 160%;
+  color: $c-ink-50;
+  margin: 0;
 }
 
 @include md-down {

@@ -1,208 +1,132 @@
 {
-  "core": [
+  "networking": [
     {
-      "name": "TypeScript",
-      "slug": "typescript"
+      "name": "TCP/IP",
+      "slug": "tcp-ip"
     },
     {
-      "name": "JavaScript",
-      "slug": "javascript"
+      "name": "LAN / WLAN",
+      "slug": "lan-wlan"
     },
     {
-      "name": "Vue",
-      "slug": "vue"
+      "name": "Subnetting",
+      "slug": "subnetting"
     },
     {
-      "name": "Nuxt",
-      "slug": "nuxt"
+      "name": "Routing",
+      "slug": "routing"
     },
     {
-      "name": "Pinia",
-      "slug": "pinia"
+      "name": "Switching",
+      "slug": "switching"
     },
     {
-      "name": "React",
-      "slug": "react"
+      "name": "MikroTik",
+      "slug": "mikrotik"
     },
     {
-      "name": "Sass",
-      "slug": "sass"
+      "name": "Ruijie Reyee",
+      "slug": "ruijie-reyee"
     },
     {
-      "name": "Tailwind CSS",
-      "slug": "tailwind-css"
+      "name": "UTP",
+      "slug": "utp"
     },
     {
-      "name": "Vite",
-      "slug": "vite"
+      "name": "Fiber optic",
+      "slug": "fiber-optic"
     },
     {
-      "name": "Webpack",
-      "slug": "webpack"
+      "name": "Fusion Splicer",
+      "slug": "fusion-splicer"
     },
     {
-      "name": "GSAP",
-      "slug": "gsap"
+      "name": "OTDR",
+      "slug": "otdr"
     },
     {
-      "name": "HTML",
-      "slug": "html"
-    },
-    {
-      "name": "CSS",
-      "slug": "css"
-    },
-    {
-      "name": "Accessibility",
-      "slug": "accessibility"
-    },
-    {
-      "name": "Design Systems",
-      "slug": "design-systems"
-    },
-    {
-      "name": "Testing",
-      "slug": "testing"
-    },
-    {
-      "name": "Vitest",
-      "slug": "vitest"
-    },
-    {
-      "name": "Playwright",
-      "slug": "playwright"
-    },
-    {
-      "name": "Vuex",
-      "slug": "vuex"
-    },
-    {
-      "name": "Vuetify",
-      "slug": "vuetify"
-    },
-    {
-      "name": "Zustand",
-      "slug": "zustand"
-    },
-    {
-      "name": "Rollup",
-      "slug": "rollup"
-    },
-    {
-      "name": "PostCSS",
-      "slug": "postcss"
-    },
-    {
-      "name": "Web Components",
-      "slug": "web-components"
+      "name": "OPM",
+      "slug": "opm"
     }
   ],
-  "experienced": [
+  "systems": [
     {
-      "name": "Node.js",
-      "slug": "node-js"
-    },
-    {
-      "name": "GraphQL",
-      "slug": "graphql"
-    },
-    {
-      "name": "REST APIs",
-      "slug": "rest-apis"
-    },
-    {
-      "name": "PostgreSQL",
-      "slug": "postgresql"
-    },
-    {
-      "name": "Docker",
-      "slug": "docker"
+      "name": "Git",
+      "slug": "git"
     },
     {
       "name": "CI / CD",
       "slug": "ci-cd"
     },
     {
-      "name": "Nginx",
-      "slug": "nginx"
-    },
-    {
-      "name": "Redis",
-      "slug": "redis"
-    },
-    {
-      "name": "Figma",
-      "slug": "figma"
-    },
-    {
-      "name": "Storybook",
-      "slug": "storybook"
-    },
-    {
-      "name": "MongoDB",
-      "slug": "mongodb"
-    },
-    {
-      "name": "Kubernetes",
-      "slug": "kubernetes"
-    },
-    {
-      "name": "GitLab CI",
-      "slug": "gitlab-ci"
+      "name": "Docker",
+      "slug": "docker"
     },
     {
       "name": "Linux",
       "slug": "linux"
+    },
+    {
+      "name": "Windows 10/11",
+      "slug": "windows-10-11"
+    },
+    {
+      "name": "macOS",
+      "slug": "macos"
+    },
+    {
+      "name": "Python",
+      "slug": "python"
+    },
+    {
+      "name": "AI / API integration",
+      "slug": "ai-api-integration"
+    },
+    {
+      "name": "Agentic AI",
+      "slug": "agentic-ai"
+    },
+    {
+      "name": "MCP",
+      "slug": "mcp"
+    },
+    {
+      "name": "Local server administration",
+      "slug": "local-server-administration"
+    },
+    {
+      "name": "Backup / recovery",
+      "slug": "backup-recovery"
     }
   ],
-  "favoured": [
+  "support": [
     {
-      "name": "VS Code",
-      "slug": "vs-code"
+      "name": "Helpdesk",
+      "slug": "helpdesk"
     },
     {
-      "name": "Git",
-      "slug": "git"
+      "name": "IT asset management",
+      "slug": "it-asset-management"
     },
     {
-      "name": "GitHub Actions",
-      "slug": "github-actions"
+      "name": "PC repair",
+      "slug": "pc-repair"
     },
     {
-      "name": "ESLint",
-      "slug": "eslint"
+      "name": "Laptop assembly",
+      "slug": "laptop-assembly"
     },
     {
-      "name": "Prettier",
-      "slug": "prettier"
+      "name": "Network printer",
+      "slug": "network-printer"
     },
     {
-      "name": "Stylelint",
-      "slug": "stylelint"
+      "name": "Barcode scanner",
+      "slug": "barcode-scanner"
     },
     {
-      "name": "Lighthouse",
-      "slug": "lighthouse"
-    },
-    {
-      "name": "Notion",
-      "slug": "notion"
-    },
-    {
-      "name": "Linear",
-      "slug": "linear"
-    },
-    {
-      "name": "Raycast",
-      "slug": "raycast"
-    },
-    {
-      "name": "Obsidian",
-      "slug": "obsidian"
-    },
-    {
-      "name": "Excalidraw",
-      "slug": "excalidraw"
+      "name": "CCTV / NVR / DVR",
+      "slug": "cctv-nvr-dvr"
     }
   ]
 }

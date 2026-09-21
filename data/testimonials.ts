@@ -1,51 +1,26 @@
 import type { Testimonial } from './types'
 
-const portrait = (n: number) => `/images/testimonials/portrait-${String(n).padStart(2, '0')}.svg`
+/**
+ * Testimonials — intentionally empty.
+ *
+ * The supplied CV lists no referees, clients or quotations, and the previous
+ * contents were invented for the demo identity (named people at invented
+ * employers). Fabricated testimonials are the single most damaging thing a
+ * portfolio can carry, so the list is empty and the section says so.
+ *
+ * The layout is unchanged: the heading, the subtitle, and the **"Leave yours"**
+ * action and its review modal all remain, so the section is still a working
+ * invitation for real reviewers rather than a hole in the page.
+ *
+ * To fill it: add entries below. `Testimonial` is
+ * `{ name, role, quote, portrait }`, and the staircase reads best with six.
+ * Portraits come from `/images/testimonials/portrait-01…06.svg`.
+ */
+export const testimonials: Testimonial[] = []
 
+/**
+ * Shown above the mosaic. Rewritten for the empty state: the previous copy
+ * claimed the site was already displaying feedback.
+ */
 export const testimonialsIntro =
-  'The most useful feedback I get is specific: a screen that confused someone, a handover that went smoothly, a deadline that was met without drama. Here is some of it.'
-
-export const testimonials: Testimonial[] = [
-  {
-    name: 'Ines Marques',
-    role: 'Head of Product, Northline',
-    quote:
-      'Kamran is the rare engineer who argues about the product, not just the implementation. He rewrote our booking flow and somehow shipped fewer features while making the product feel twice as capable.',
-    portrait: portrait(1)
-  },
-  {
-    name: 'Tomas Berg',
-    role: 'Engineering Manager, Cobalt Labs',
-    quote:
-      'He left behind a component library with documentation good enough that new hires read it voluntarily. That is the highest praise I can give a frontend engineer.',
-    portrait: portrait(2)
-  },
-  {
-    name: 'Priya Raghunathan',
-    role: 'Design Lead, Northline',
-    quote:
-      'Working with Kamran made my designs better. He would push back with a reason and a prototype, and he was usually right. The spacing system we built together outlived the project.',
-    portrait: portrait(3)
-  },
-  {
-    name: 'Daniel Osei',
-    role: 'Founder, Harbour Goods',
-    quote:
-      'I came in with a vague idea and a small budget. He scoped it honestly, built exactly what was needed, and the storefront has run for years without anyone touching it.',
-    portrait: portrait(4)
-  },
-  {
-    name: 'Marta Kowalczyk',
-    role: 'CTO, Cobalt Labs',
-    quote:
-      'The migration he ran was the least dramatic rewrite I have witnessed. Weekly releases, no freeze, no rollback. He simply made the risky thing routine.',
-    portrait: portrait(5)
-  },
-  {
-    name: 'Yusuf Karim',
-    role: 'Senior Engineer, Northline',
-    quote:
-      'He is generous with context. Every review came with the reasoning behind it, so you left knowing why rather than just what to change. I learned more from six months of his reviews than from most courses.',
-    portrait: portrait(6)
-  }
-]
+  'Reviews are collected here as clients and colleagues send them. Nothing is published without permission, and nothing on this page is written on anyone else’s behalf.'

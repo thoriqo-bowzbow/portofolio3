@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Raycast">
-  <g style="color:hsl(143 58% 36%)"><path d="M32 5 L55 18.5 L55 45.5 L32 59 L9 45.5 L9 18.5 Z" fill="currentColor"/></g>
-  <text x="32" y="33" text-anchor="middle" dominant-baseline="central"
-        font-family="Montserrat, Arial, sans-serif" font-size="20"
-        font-weight="600" letter-spacing="-0.4" fill="#fff">RA</text>
-</svg>
