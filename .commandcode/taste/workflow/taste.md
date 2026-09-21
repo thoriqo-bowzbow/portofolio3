@@ -11,6 +11,7 @@
 - Wants commits grouped by feature ("sesuai fiturnya") — multiple scoped commits rather than one blanket commit for all pending changes. Confidence: 0.75
 - Asks for the pending changes to be reviewed (diffs and new files) before they are staged and committed, rather than committed blindly. Confidence: 0.7
 - When an issue is raised but not yet resolved, prefers to commit and push as-is ("apa adanya") and fix it in a later pass, rather than blocking the commit until everything is perfect. Confidence: 0.7
+- Also has a fast-path mode where they explicitly ask to skip the review step and go straight to staging, committing and pushing ("langsung git add, git commit, git push tanpa review"). In that mode they accept the pushed code is unverified and will be checked later, so the agent should not pause to review diffs or block on build/typecheck. Confidence: 0.65
 
 ## Communication
 - Writes requests in Indonesian (Bahasa Indonesia) and expects responses in the same language. Confidence: 0.7

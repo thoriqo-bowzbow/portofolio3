@@ -5,6 +5,59 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-01-01',
   devtools: { enabled: false },
 
+  /**
+   * `experimental.appManifest` is switched off.
+   *
+   * ## Why
+   *
+   * With it on (the Nuxt default), a cold `nuxt dev` can print, several times:
+   *
+   * ```
+   * ERROR  Pre-transform error: Failed to resolve import "#app-manifest"
+   *        from "node_modules/nuxt/dist/app/composables/manifest.js?v=…"
+   * Plugin: vite:import-analysis
+   * ```
+   *
+   * That is an upstream race, not a problem with this project. The chain:
+   *
+   * 1. `nuxt/dist/app/plugins/router.js` imports `getRouteRules` from
+   *    `composables/manifest.js`, so that module is always in the client graph.
+   * 2. `manifest.js` contains a **server-only** dynamic import —
+   *    `if (import.meta.server) { import("#app-manifest") }`. For the client
+   *    build Vite replaces `import.meta.server` with `false`, leaving
+   *    `if (false) { import("#app-manifest") }`. The branch is dead code and
+   *    never runs.
+   * 3. Vite's `vite:import-analysis` statically scans the `import()` argument
+   *    anyway and tries to *resolve* it. `#app-manifest` is a virtual module
+   *    that Nitro registers later in the build, and on the client it is meant to
+   *    be satisfied by Nuxt's `nuxt:client:aliases` plugin, which is attached per
+   *    environment. On a cold start the resolution can run before that alias is
+   *    in place, so it fails and is reported as a pre-transform error.
+   *
+   * Tracked upstream as nuxt/nuxt#33606 (closed, with a minimal reproduction).
+   * Adding a Vite `@vite-ignore` hint does not help — the failing step is
+   * resolution, not the import-analysis hint. Nuxt 3.21.11 is still affected and
+   * is the latest 3.x, so there is no release to upgrade to, and patching
+   * `node_modules` is not an option.
+   *
+   * ## Why it is safe here
+   *
+   * The app manifest only serves two things: **client-side route rules** and
+   * **loading prerendered payloads**. This site declares no `routeRules`, is not
+   * prerendered, and ships a single page — so the feature is inert, and the
+   * imports it generates are dead weight in the client bundle either way. The
+   * error is log noise on a code path this site never executes.
+   *
+   * ## Removing this
+   *
+   * Drop the block once Nuxt resolves the race (check nuxt/nuxt#33606), or before
+   * this project adds `routeRules` or prerendering — at that point the manifest
+   * becomes load-bearing and must be switched back on.
+   */
+  experimental: {
+    appManifest: false
+  },
+
   modules: [],
 
   // Keep component names flat (<SiteHeader>, not <LayoutSiteHeader>) so the
