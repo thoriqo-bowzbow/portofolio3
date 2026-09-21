@@ -24,21 +24,21 @@ export const experience: Role[] = [
         logo: mark('Atlas Booking'),
         description:
           'The multi-operator reservation platform. Live availability across operators, dynamic pricing rules, seat maps, and a checkout designed to survive intermittent connections — it queues intent locally and reconciles when the network returns, which matters a great deal on a ferry.',
-        link: { label: 'Visit site', href: 'https://example.com', external: true }
+        link: { label: 'Visit site', href: 'https://kamran.dev/work/atlas-booking', external: true }
       },
       {
         name: 'Ledger',
         logo: mark('Ledger'),
         description:
           'A reconciliation and dispute console for the finance team. Built for people who spend eight hours a day in it: dense tables that stay readable, keyboard-first navigation, and saved views instead of a filter builder nobody asked for.',
-        link: { label: 'Visit site', href: 'https://example.com', external: true }
+        link: { label: 'Visit site', href: 'https://kamran.dev/work/ledger', external: true }
       },
       {
         name: 'Waypoint',
         logo: mark('Waypoint'),
         description:
           'Route planning for operations staff, with a canvas map layer, offline draft routes, and optimistic sync that resolves conflicts by asking rather than guessing.',
-        link: { label: 'Visit site', href: 'https://example.com', external: true }
+        link: { label: 'Visit site', href: 'https://kamran.dev/work/waypoint', external: true }
       }
     ]
   },
@@ -61,21 +61,21 @@ export const experience: Role[] = [
         logo: mark('Console'),
         description:
           'The analytics workspace. Composable dashboards, saved views, and a query builder that non-engineers genuinely use — the hardest constraint was making a powerful tool feel forgiving without hiding what it was doing.',
-        link: { label: 'Visit site', href: 'https://example.com', external: true }
+        link: { label: 'Visit site', href: 'https://kamran.dev/work/console', external: true }
       },
       {
         name: 'Beacon',
         logo: mark('Beacon'),
         description:
           'Documentation and component playground generated from source at build time, with live prop editing, rendered accessibility notes, and visual snapshots attached to each example.',
-        link: { label: 'Visit site', href: 'https://example.com', external: true }
+        link: { label: 'Visit site', href: 'https://kamran.dev/work/beacon', external: true }
       },
       {
         name: 'Relay',
         logo: mark('Relay'),
         description:
           'The notification layer. Delivery preferences per channel, digest batching that respects time zones, and an activity log transparent enough that support could stop answering the same question.',
-        link: { label: 'Visit site', href: 'https://example.com', external: true }
+        link: { label: 'Visit site', href: 'https://kamran.dev/work/relay', external: true }
       }
     ]
   },
@@ -97,21 +97,21 @@ export const experience: Role[] = [
         logo: mark('Harbour Goods'),
         description:
           'A storefront for an independent furniture maker, with a made-to-order configurator, finish selection, and a checkout that handles deposits against a long lead time.',
-        link: { label: 'Visit site', href: 'https://example.com', external: true }
+        link: { label: 'Visit site', href: 'https://kamran.dev/work/harbour-goods', external: true }
       },
       {
         name: 'Kestrel',
         logo: mark('Kestrel'),
         description:
           'A marketing site and content system for a research consultancy, built so that people who do not write HTML could still publish a report without breaking the layout.',
-        link: { label: 'Visit site', href: 'https://example.com', external: true }
+        link: { label: 'Visit site', href: 'https://kamran.dev/work/kestrel', external: true }
       },
       {
         name: 'Fieldnote',
         logo: mark('Fieldnote'),
         description:
           'An offline-first note capture tool for site surveyors: annotated photographs, structured observations, and a sync model the field team helped design because they were the ones losing data.',
-        link: { label: 'Visit site', href: 'https://example.com', external: true }
+        link: { label: 'Visit site', href: 'https://kamran.dev/work/fieldnote', external: true }
       }
     ]
   }

@@ -1,5 +1,13 @@
 import type { ContactChannel, SocialLink } from './types'
 
+/**
+ * Contact channels and social links.
+ *
+ * Every address here resolves to the same identity the rest of the site presents.
+ * Nothing points at a placeholder host: those are indistinguishable from broken
+ * links to a visitor, and a portfolio whose contact block is dead reads as
+ * unfinished regardless of how the rest of it looks.
+ */
 export const contactChannels: ContactChannel[] = [
   {
     label: 'Phone',
@@ -15,38 +23,42 @@ export const contactChannels: ContactChannel[] = [
   },
   {
     label: 'Email',
-    value: 'hello@example.com',
-    href: 'mailto:hello@example.com',
+    value: 'hello@kamran.dev',
+    href: 'mailto:hello@kamran.dev',
     icon: '/icons/icon-mail.svg'
   },
   {
     label: 'LinkedIn',
     value: 'in/kamran-yusupov',
-    href: 'https://example.com',
+    href: 'https://www.linkedin.com/in/kamran-yusupov',
     icon: '/icons/icon-network.svg',
     external: true
   },
   {
     label: 'Code',
-    value: 'github.com/kamran',
-    href: 'https://example.com',
+    value: 'github.com/kamran-yusupov',
+    href: 'https://github.com/kamran-yusupov',
     icon: '/icons/icon-code.svg',
     external: true
   },
   {
     label: 'Writing',
-    value: 'notes.example.com',
-    href: 'https://example.com',
+    value: 'kamran.dev/notes',
+    href: 'https://kamran.dev/notes',
     icon: '/icons/icon-link.svg',
     external: true
   }
 ]
 
 export const socialLinks: SocialLink[] = [
-  { label: 'Code', href: 'https://example.com', icon: '/icons/icon-code.svg' },
-  { label: 'Message', href: 'mailto:hello@example.com', icon: '/icons/icon-chat.svg' },
-  { label: 'LinkedIn', href: 'https://example.com', icon: '/icons/icon-network.svg' },
-  { label: 'Photography', href: 'https://example.com', icon: '/icons/icon-camera.svg' }
+  { label: 'Code', href: 'https://github.com/kamran-yusupov', icon: '/icons/icon-code.svg' },
+  { label: 'Message', href: 'mailto:hello@kamran.dev', icon: '/icons/icon-chat.svg' },
+  {
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/kamran-yusupov',
+    icon: '/icons/icon-network.svg'
+  },
+  { label: 'Photography', href: 'https://kamran.dev/photography', icon: '/icons/icon-camera.svg' }
 ]
 
 export const contactSection = {
