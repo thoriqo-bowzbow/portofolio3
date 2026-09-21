@@ -106,6 +106,16 @@ interface Resolved {
   centreFromHeroTop: number
   /** The `y` currently written to this element, so later reads can remove it. */
   appliedY: number
+  /**
+   * The layer's box in document coordinates with no transform applied.
+   *
+   * Used by `guardColumns` to work out how much clear space sits between two
+   * siblings. Layout only, for the same reason as `centreFromHeroTop`.
+   */
+  restTop: number
+  restBottom: number
+  /** True once the rest box above has been captured for this element. */
+  restMeasured: boolean
 }
 
 export function useHeroParallax(
@@ -162,6 +172,23 @@ export function useHeroParallax(
       const rect = layer.el.getBoundingClientRect()
       const layoutTop = rect.top + window.scrollY - layer.appliedY
       layer.centreFromHeroTop = layoutTop + rect.height / 2 - heroTop
+
+      /*
+       * The rest geometry is captured once, on the first pass — the one that runs
+       * at mount, before any transform has been written.
+       *
+       * It has to be, because the guard's clearance is only meaningful against the
+       * *untransformed* boxes. Re-deriving it on a later refresh folds whatever
+       * offsets were live at that moment into the "rest" position: after one
+       * refresh the column's apparent gaps had grown from 10/35px to 23/70px, the
+       * clamp stopped firing, and the description settled back on top of the
+       * buttons it had just been moved off.
+       */
+      if (!layer.restMeasured) {
+        layer.restTop = layoutTop
+        layer.restBottom = layoutTop + rect.height
+        layer.restMeasured = true
+      }
     }
   }
 
@@ -199,11 +226,83 @@ export function useHeroParallax(
       const anchor = anchoredToHeroTop ? 0 : layer.centreFromHeroTop - vh / 2
 
       const offset = Math.max(-windowLength, Math.min(windowLength, scroll - anchor))
-      const y = -layer.speed * SPEED_TO_RATE * offset
-
-      layer.appliedY = y
-      gsap.set(layer.el, { y, force3D: true })
+      layer.appliedY = -layer.speed * SPEED_TO_RATE * offset
     }
+
+    guardColumns()
+
+    for (const layer of resolved) {
+      gsap.set(layer.el, { y: layer.appliedY, force3D: true })
+    }
+  }
+
+  /**
+   * Stops siblings inside one info column from crossing each other.
+   *
+   * The story-block info column carries three layers at two very different
+   * rates — the title and the actions at 0.5, the description at 2 — so the
+   * description drifts up roughly four times as fast as the things around it.
+   * Left alone it climbs through the title above it and, later, down into the
+   * buttons below it, and the result is plainly readable on screen: at 1440×900
+   * the word "Performance" lands on the descenders of "Speed", and a block's
+   * description overlaps its own buttons by 32px of a 45px-tall button.
+   *
+   * Each layer still moves at its measured rate everywhere that rate does not put
+   * it on top of a neighbour. Past that point it holds against the neighbour's
+   * edge. The column as a whole keeps drifting, which is the part that reads as
+   * motion — only the collision is removed.
+   *
+   * The bound is the pair's own rest gap, not zero. For a layer sitting below its
+   * predecessor with `g` px of clear space between their boxes, the two overlap
+   * once the lower one has been raised by more than `g` relative to the upper —
+   * so `y(lower) >= y(upper) − g` is the exact "do not overlap" condition, and it
+   * leaves the pair free to close that gap as they drift.
+   */
+  const guardColumns = () => {
+    const groups = new Map<Element, Resolved[]>()
+
+    for (const layer of resolved) {
+      const column = layer.el.parentElement?.closest('.hero-block__info')
+      if (!column) continue
+      const bucket = groups.get(column)
+      if (bucket) bucket.push(layer)
+      else groups.set(column, [layer])
+    }
+
+    groups.forEach((layers) => {
+      // Document order, so `layers[i]` sits below `layers[i - 1]` at rest
+      layers.sort((a, b) =>
+        a.el.compareDocumentPosition(b.el) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1
+      )
+
+      for (let i = 1; i < layers.length; i++) {
+        const upper = layers[i - 1]
+        const lower = layers[i]
+        // Clear space between the two boxes before any transform is applied
+        const gap = Math.max(0, lower.restTop - upper.restBottom)
+        // Overlap once the lower layer has risen past the upper one's bottom edge
+        // by more than `gap`.
+        const excess = upper.appliedY - gap - lower.appliedY
+        if (excess <= 0) continue
+
+        /*
+         * Correct whichever of the two is the one that diverged, not simply the
+         * lower one.
+         *
+         * In this layout that is always the description: it runs at speed 2 while
+         * the title and actions around it run at 0.5. Pushing the *actions* down to
+         * keep clear of it — the obvious reading of the constraint — drags a layer
+         * that was behaving correctly off its measured rate, and the palette of
+         * per-step rates then shows the buttons moving at −0.077 instead of
+         * −0.050. Moving the faster layer back instead leaves the other two exact.
+         */
+        if (lower.speed >= upper.speed) {
+          lower.appliedY += excess
+        } else {
+          upper.appliedY -= excess
+        }
+      }
+    })
   }
 
   onMounted(() => {
@@ -222,7 +321,10 @@ export function useHeroParallax(
             speed: layer.speed,
             anchorMode: layer.anchor,
             centreFromHeroTop: 0,
-            appliedY: 0
+            appliedY: 0,
+            restTop: 0,
+            restBottom: 0,
+            restMeasured: false
           })
         })
       }
