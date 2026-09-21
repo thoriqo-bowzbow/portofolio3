@@ -9,10 +9,11 @@
 - Pushes to GitHub over HTTPS rather than SSH; states the method explicitly when delegating a push. Confidence: 0.8
 - Provides credentials (e.g. a personal access token) inline in the request so the push can be executed immediately. Confidence: 0.65
 - Wants commits grouped by feature ("sesuai fiturnya") — multiple scoped commits rather than one blanket commit for all pending changes. Confidence: 0.75
-- Asks for the pending changes to be reviewed (diffs and new files) before they are staged and committed, rather than committed blindly. Confidence: 0.6
+- Asks for the pending changes to be reviewed (diffs and new files) before they are staged and committed, rather than committed blindly. Confidence: 0.7
 
 ## Communication
 - Writes requests in Indonesian (Bahasa Indonesia) and expects responses in the same language. Confidence: 0.7
+- Gives terse, one-line goal instructions (e.g. "review, add, commit, lalu push ke github saya") and expects the agent to work out the details and run the whole review → verify → commit → push pipeline autonomously, without follow-up clarification questions. Confidence: 0.6
 
 ## Verification
 - Does not declare a goal complete until it is verified end-to-end — production build succeeds, no critical console/runtime errors, no obvious layout or overflow bugs — rather than stopping at a working MVP. Confidence: 0.85
