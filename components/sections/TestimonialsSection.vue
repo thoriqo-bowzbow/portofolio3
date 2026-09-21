@@ -18,6 +18,15 @@ const introRef = ref<HTMLElement | null>(null)
 // threshold 0 on the copy so the ink-in completes before the line is readable
 useRevealChildren(introRef, '.testimonials__info-text', { threshold: 0 })
 useRevealChildren(listRef, '.testimonial-card', { threshold: 0.05 })
+
+/**
+ * "Leave yours" opens the review modal.
+ *
+ * The reference carries this action under the testimonials subtitle, and it is
+ * the only way into the review form — without it the modal is unreachable and the
+ * section loses the invitation the reference leads with.
+ */
+const { open: openReviewModal } = useReviewModal()
 </script>
 
 <template>
@@ -28,6 +37,13 @@ useRevealChildren(listRef, '.testimonial-card', { threshold: 0.05 })
         <p class="testimonials__subtitle">
           Feedback from the teams and clients I have worked alongside.
         </p>
+
+        <MdButton
+          class="testimonials__cta"
+          variant="dark"
+          :label="'Leave yours'"
+          @click="openReviewModal()"
+        />
       </div>
 
       <div ref="introRef" class="testimonials__info">
@@ -64,6 +80,14 @@ useRevealChildren(listRef, '.testimonial-card', { threshold: 0.05 })
 
 .testimonials__subtitle {
   @include section-subtitle(160%);
+}
+
+// Sits directly under the subtitle on the left, matching the reference's
+// placement rather than trailing the mosaic on the right.
+.testimonials__cta {
+  align-self: flex-start;
+  margin: 25px 0 0;
+  padding: 0 20px;
 }
 
 .testimonials__info {

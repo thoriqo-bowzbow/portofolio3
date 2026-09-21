@@ -26,8 +26,11 @@ useSmoothScroll()
     <SiteFooter />
     <SiteLoader />
 
-    <!-- Teleported to <body>, so it overlays the shell regardless of stacking. -->
+    <!-- Teleported to <body>, so both overlay the shell regardless of stacking.
+         The request form is the header CTA's destination; the review form is
+         reached from "Leave yours" in the testimonials section. -->
     <RequestModal />
+    <ReviewModal />
   </div>
 </template>
 
