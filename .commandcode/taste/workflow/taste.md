@@ -14,7 +14,7 @@
 - Also has a fast-path mode where they explicitly ask to skip the review step and go straight to staging, committing and pushing ("langsung git add, git commit, git push tanpa review"). In that mode they accept the pushed code is unverified and will be checked later, so the agent should not pause to review diffs or block on build/typecheck. Confidence: 0.65
 
 ## Communication
-- Writes requests in Indonesian (Bahasa Indonesia) and expects responses in the same language. Confidence: 0.7
+- Writes requests in Indonesian (Bahasa Indonesia) and expects responses in the same language. Confidence: 0.8
 - Gives terse, one-line goal instructions (e.g. "review, add, commit, lalu push ke github saya") and expects the agent to work out the details and run the whole review → verify → commit → push pipeline autonomously, without follow-up clarification questions. Confidence: 0.6
 
 ## Verification
@@ -28,3 +28,4 @@
 
 ## Content & assets
 - Uses original content and assets; does not copy protected text, photographs, logos or illustrations. Confidence: 0.85
+or illustrations. Confidence: 0.85
