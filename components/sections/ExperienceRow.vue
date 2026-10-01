@@ -164,4 +164,10 @@ useRevealChildren(bodyRef, '.project-tile', { threshold: 0.05 })
     margin: 40px 0;
   }
 }
+
+@include above($bp-sm) {
+  .experience-row__title {
+    @include sticky-titling;
+  }
+}
 </style>

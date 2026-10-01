@@ -55,6 +55,9 @@ const educationRows = computed(() =>
   @include section-padding;
 
   background: $c-surface;
+  // The role titles inside each row are sticky, so the section itself must not
+  // be a scroll container — see @mixin sticky-titling.
+  overflow: unset;
 }
 
 .experience__content {
@@ -76,7 +79,6 @@ const educationRows = computed(() =>
 @include sm-down {
   .experience {
     position: relative;
-    overflow: unset;
   }
 
   .experience__content {

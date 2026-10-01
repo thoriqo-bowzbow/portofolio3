@@ -105,6 +105,30 @@
 }
 
 // -----------------------------------------------------------------------------
+// A section's left titling column, travelling with the content beside it
+//
+// Three conditions have to hold or `sticky` silently does nothing at all:
+//
+//   1. No ancestor may be a scroll container. `section { overflow: hidden }` in
+//      the reset makes every section one, and a scroll container that never
+//      scrolls gives the sticky item nowhere to go — so the sections using this
+//      mixin also unset their own overflow.
+//   2. The item must not stretch. A grid item that fills its area has no travel
+//      left, so `align-self: start` is part of the mixin rather than left to each
+//      call site.
+//   3. The grid area must be taller than the title, which means the title and
+//      its section's content have to share one row.
+//
+// `$top` parks the title on the section's own top padding line — the position it
+// would have occupied had it never moved.
+// -----------------------------------------------------------------------------
+@mixin sticky-titling($top: $section-pad-y) {
+  align-self: flex-start;
+  position: sticky;
+  top: $top;
+}
+
+// -----------------------------------------------------------------------------
 // Display type — the reference sets every heading at weight 400 unless noted
 // -----------------------------------------------------------------------------
 @mixin display($size, $weight: 400, $lh: normal) {

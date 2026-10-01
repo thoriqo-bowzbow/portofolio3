@@ -165,4 +165,16 @@ const { open: openReviewModal } = useReviewModal()
     gap: 20px;
   }
 }
+
+@include above($bp-sm) {
+  // `section { overflow: hidden }` in the reset makes the section a scroll
+  // container, which stops `position: sticky` dead. See @mixin sticky-titling.
+  .testimonials {
+    overflow: unset;
+  }
+
+  .testimonials__titling {
+    @include sticky-titling;
+  }
+}
 </style>

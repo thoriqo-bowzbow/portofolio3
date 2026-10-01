@@ -170,4 +170,16 @@ const blocks = computed<Block[]>(() => {
     }
   }
 }
+
+@include above($bp-sm) {
+  // `section { overflow: hidden }` in the reset makes the section a scroll
+  // container, which stops `position: sticky` dead. See @mixin sticky-titling.
+  .about {
+    overflow: unset;
+  }
+
+  .about__titling {
+    @include sticky-titling;
+  }
+}
 </style>

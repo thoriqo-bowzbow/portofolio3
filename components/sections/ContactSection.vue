@@ -118,4 +118,16 @@ useRevealChildren(socialsRef, '.contact-card', { threshold: 0.05 })
     gap: 20px;
   }
 }
+
+@include above($bp-sm) {
+  // `section { overflow: hidden }` in the reset makes the section a scroll
+  // container, which stops `position: sticky` dead. See @mixin sticky-titling.
+  .contact {
+    overflow: unset;
+  }
+
+  .contact__titling {
+    @include sticky-titling;
+  }
+}
 </style>

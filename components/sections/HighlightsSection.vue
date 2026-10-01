@@ -111,4 +111,16 @@ useRevealChildren(gridRef, '.highlight-tile', { threshold: 0.08 })
     display: none;
   }
 }
+
+@include above($bp-sm) {
+  // `section { overflow: hidden }` in the reset makes the section a scroll
+  // container, which stops `position: sticky` dead. See @mixin sticky-titling.
+  .highlights {
+    overflow: unset;
+  }
+
+  .highlights__titling {
+    @include sticky-titling;
+  }
+}
 </style>
