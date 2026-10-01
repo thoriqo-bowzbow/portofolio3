@@ -88,7 +88,7 @@ const props = defineProps<{
 }
 
 .contact-card__details-desc {
-  color: $c-ink-60;
+  color: $c-ink-60-readable;
   font-size: 12px;
   font-style: normal;
   font-weight: 300;
