@@ -80,7 +80,7 @@ without touching component markup.
 | `data/projects.ts` | the highlights mosaic |
 | `data/stack.ts` | technology groups (reads `data/stack-icons.json`) |
 | `data/testimonials.ts` | testimonial cards |
-| `data/contact.ts` | contact channels and form copy |
+| `data/contact.ts` | contact channels |
 | `data/navigation.ts` | nav labels and their section anchors |
 
 Image references point at files in `public/`. Replace them with your own by

@@ -3,7 +3,10 @@
  * Contact channel card.
  *
  * Dormant at `grayscale(1)`; hovering restores colour and lifts a very soft
- * shadow. The icon is held at `opacity .5` so the label leads (RECON §7.7).
+ * shadow. The icon is held at `opacity .5` so the label leads (RECON §7.7), and
+ * is flattened to black while dormant so a file carrying its own colour — the
+ * WhatsApp mark — still sits with the rest of the set. Hovering releases both,
+ * which is where that colour appears.
  */
 import type { ContactChannel } from '~/data/types'
 
@@ -64,12 +67,30 @@ const props = defineProps<{
   height: 35px;
   flex-shrink: 0;
   opacity: 0.5;
+  transition: $dur-hover;
 }
 
 .contact-card__image-file {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  /*
+   * Flattened to the black the rest of the set is drawn in, so the row reads as
+   * one family while dormant even though the WhatsApp file carries its own
+   * green. Hovering releases it, along with the card's own `grayscale(1)`.
+   */
+  filter: brightness(0);
+  transition: $dur-hover;
+}
+
+// The reveal: the icon comes up to full strength and drops the flattening, so
+// the colour the file carries is actually seen.
+.contact-card:hover .contact-card__image {
+  opacity: 1;
+}
+
+.contact-card:hover .contact-card__image-file {
+  filter: none;
 }
 
 .contact-card__details {

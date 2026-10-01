@@ -1,6 +1,13 @@
 <script setup lang="ts">
 /**
- * Contact — channel cards, an `or` separator flanked by hairlines, and the form.
+ * Contact — the channel cards only.
+ *
+ * The reference also carries a message form below an `or` separator. It is not
+ * reproduced: WhatsApp, Gmail compose and the address itself are each one click
+ * from here, so a form would be a third route to the same inbox — and the only
+ * one that cannot work without a backend. Every channel opens somewhere the
+ * message can actually be sent from.
+ *
  * Section background stays `#fafafa` against the white testimonials band above
  * (RECON §6, §7.7).
  */
@@ -26,10 +33,6 @@ useRevealChildren(socialsRef, '.contact-card', { threshold: 0.05 })
             :channel="channel"
           />
         </div>
-
-        <p class="contact__separator">{{ contactSection.separator }}</p>
-
-        <ContactForm />
       </div>
     </div>
   </section>
@@ -73,30 +76,6 @@ useRevealChildren(socialsRef, '.contact-card', { threshold: 0.05 })
   width: 100%;
 }
 
-.contact__separator {
-  color: $c-ink;
-  font-family: $font-display;
-  font-size: 26px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-
-  &::before,
-  &::after {
-    content: '';
-    width: 100px;
-    height: 1px;
-    background: $c-ink-30;
-    margin: 0 20px;
-    flex-shrink: 0;
-  }
-}
-
 @include xl-down {
   .contact__socials {
     grid-template-columns: repeat(2, 1fr);
@@ -106,10 +85,6 @@ useRevealChildren(socialsRef, '.contact-card', { threshold: 0.05 })
 @include md-down {
   .contact__socials {
     gap: 10px;
-  }
-
-  .contact__separator {
-    font-size: 22px;
   }
 }
 

@@ -468,8 +468,60 @@ const icons = {
   'icon-profile': ICON(`<circle cx="12" cy="8.2" r="4.1"/><path d="M4 20.4c0-4 3.6-6.6 8-6.6s8 2.6 8 6.6"/>`),
   'icon-chat': ICON(`<path d="M20.5 11.6c0 4.2-3.8 7.6-8.5 7.6-1 0-2-.15-2.9-.42L4 20.4l1.5-4.1A7.2 7.2 0 0 1 3.5 11.6C3.5 7.4 7.3 4 12 4s8.5 3.4 8.5 7.6Z"/>`),
   'icon-network': ICON(`<rect x="2.6" y="2.6" width="18.8" height="18.8" rx="3"/><path d="M7.2 10.4v6.4M7.2 7.3v.1M11.4 16.8v-3.6a2.2 2.2 0 0 1 4.4 0v3.6"/>`),
+  // LinkedIn. The same geometry as `icon-network` above — the side rail still
+  // uses that one — but carrying the brand blue, so the contact card has a
+  // colour to release when it is hovered.
+  'icon-linkedin': `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#0a66c2" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="2.6" y="2.6" width="18.8" height="18.8" rx="3"/>
+    <path d="M7.2 10.4v6.4M7.2 7.3v.1M11.4 16.8v-3.6a2.2 2.2 0 0 1 4.4 0v3.6"/>
+  </svg>`,
+  // GitHub. Filled rather than stroked, because the mark is a silhouette and has
+  // no line form. Carries the purple the owner picked rather than the mark's
+  // official black: black is indistinguishable from the flattened dormant state,
+  // so the hover would have nothing to reveal.
+  //
+  // The path fills the full 24-unit box where the rest of the set sits inside
+  // roughly 2.6-21.4, so it is scaled to 0.783 and re-centred to land on the same
+  // optical size as its neighbours.
+  'icon-github': `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="#6e5494">
+    <g transform="translate(2.6 2.6) scale(0.783)">
+      <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+    </g>
+  </svg>`,
   'icon-camera': ICON(`<rect x="3" y="3" width="18" height="18" rx="4.5"/><circle cx="12" cy="12" r="4.2"/><path d="M17.4 6.9v.02"/>`),
   'icon-phone': ICON(`<path d="M21 16.9v2.6a1.8 1.8 0 0 1-2 1.8 17.8 17.8 0 0 1-7.7-2.8 17.5 17.5 0 0 1-5.4-5.4A17.8 17.8 0 0 1 3.1 5.4 1.8 1.8 0 0 1 4.9 3.4h2.6a1.8 1.8 0 0 1 1.8 1.6c.11.8.32 1.6.63 2.4a1.8 1.8 0 0 1-.41 1.9l-1.1 1.1a14 14 0 0 0 5.4 5.4l1.1-1.1a1.8 1.8 0 0 1 1.9-.41c.77.3 1.57.51 2.4.63A1.8 1.8 0 0 1 21 16.9Z"/>`),
+  // WhatsApp. Unlike the rest of the set this one carries its own colour rather
+  // than `currentColor`, because the file is what releases the brand green on
+  // hover — see the icon filter in ContactCard.vue. Drawn in the set's stroke
+  // language so it sits with its neighbours at 35px.
+  //
+  // The bubble is one path: clockwise from the right of a circle centred at
+  // (12, 11.7) r 8.3 down to 135 degrees, out to the tail tip, back up to 150
+  // degrees, then the 210 degree sweep back around the top. The handset is the
+  // phone glyph scaled to 0.5 inside it, with its stroke-width doubled so it
+  // still renders at the set's 1.7 after the transform.
+  'icon-whatsapp': `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#25d366" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20.3 11.7A8.3 8.3 0 0 1 6.13 17.57L3.6 20.4 4.81 15.85A8.3 8.3 0 1 1 20.3 11.7Z"/>
+    <g transform="translate(5.975 5.525) scale(0.5)" stroke-width="3.4">
+      <path d="M21 16.9v2.6a1.8 1.8 0 0 1-2 1.8 17.8 17.8 0 0 1-7.7-2.8 17.5 17.5 0 0 1-5.4-5.4A17.8 17.8 0 0 1 3.1 5.4 1.8 1.8 0 0 1 4.9 3.4h2.6a1.8 1.8 0 0 1 1.8 1.6c.11.8.32 1.6.63 2.4a1.8 1.8 0 0 1-.41 1.9l-1.1 1.1a14 14 0 0 0 5.4 5.4l1.1-1.1a1.8 1.8 0 0 1 1.9-.41c.77.3 1.57.51 2.4.63A1.8 1.8 0 0 1 21 16.9Z"/>
+    </g>
+  </svg>`,
+  // Gmail. Carries its own colour like the WhatsApp mark, and is flattened to
+  // black by the card until it is hovered.
+  //
+  // Drawn as a thick M: the two stems run the full height, and the diagonals
+  // fall from the top corners to meet on the centre line. Both diagonal bands
+  // are cut on the same slope (0.722) and the same vertical thickness (2.9), so
+  // each band's inner edge is one straight line with the stem it joins — the
+  // red/blue join and the yellow/green join share an edge rather than
+  // overlapping. The area below the V is left open, which is what makes the
+  // mark read as an M instead of a closed envelope.
+  'icon-gmail': `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+    <path fill="#4285f4" d="M3 8.3 5.9 10.39 5.9 18.6 4 18.6A1 1 0 0 1 3 17.6Z"/>
+    <path fill="#ea4335" d="M3 5.4 12 11.9 12 14.8 3 8.3Z"/>
+    <path fill="#fbbc04" d="M21 5.4 12 11.9 12 14.8 21 8.3Z"/>
+    <path fill="#34a853" d="M21 8.3 18.1 10.39 18.1 18.6 20 18.6A1 1 0 0 0 21 17.6Z"/>
+  </svg>`,
   'icon-mail': ICON(`<rect x="2.6" y="4.6" width="18.8" height="14.8" rx="2.4"/><path d="m3.4 6.4 8.6 6.2 8.6-6.2"/>`),
   'icon-link': ICON(`<path d="M10.2 13.8a4.4 4.4 0 0 0 6.3 0l2.6-2.6a4.4 4.4 0 0 0-6.3-6.3l-1.5 1.5"/><path d="M13.8 10.2a4.4 4.4 0 0 0-6.3 0l-2.6 2.6a4.4 4.4 0 0 0 6.3 6.3l1.5-1.5"/>`),
   'icon-code': ICON(`<path d="m8.4 7.6-4.6 4.4 4.6 4.4M15.6 7.6l4.6 4.4-4.6 4.4M13.4 4.4l-2.8 15.2"/>`),

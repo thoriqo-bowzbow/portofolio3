@@ -120,8 +120,7 @@ portofolio3/
 │   │   ├── TestimonialsSection.vue
 │   │   ├── TestimonialCard.vue   # staircase card
 │   │   ├── ContactSection.vue
-│   │   ├── ContactCard.vue
-│   │   └── ContactForm.vue
+│   │   └── ContactCard.vue
 │   └── ui/
 │       ├── ScrambleText.vue      # compHacktext equivalent
 │       ├── SectionTitle.vue      # compTitle equivalent (scramble + reveal trigger)
@@ -143,7 +142,7 @@ portofolio3/
 │   ├── projects.ts               # highlights mosaic
 │   ├── stack.ts                  # 3 stack groups + tiles
 │   ├── testimonials.ts           # 6 cards
-│   ├── contact.ts                # contact channels + form copy
+│   ├── contact.ts                # contact channels
 │   ├── navigation.ts             # nav items ↔ section ids
 │   └── types.ts                  # shared interfaces
 ├── public/
@@ -185,8 +184,7 @@ portofolio3/
 | `.md-rvws` | `TestimonialsSection.vue` | |
 | `.md-rvwcard` | `TestimonialCard.vue` | staircase via `:nth-child` in CSS |
 | `.md-contact` | `ContactSection.vue` | |
-| `.md-ctcard` | `ContactCard.vue` | × 6 |
-| `.md-contact__form` | `ContactForm.vue` | |
+| `.md-ctcard` | `ContactCard.vue` | × 4 |
 | `.md-input` | `MdInput.vue` | floating label |
 | `.md-footer` | `SiteFooter.vue` | |
 | `compHacktext.vue` | `ui/ScrambleText.vue` | |
@@ -214,7 +212,7 @@ portofolio3/
 | `projects.ts` | `HighlightsSection` → `HighlightTile` |
 | `stack.ts` | `AboutSection` → `StackGroup` → `StackTile` |
 | `testimonials.ts` | `TestimonialsSection` → `TestimonialCard` |
-| `contact.ts` | `ContactSection` → `ContactCard`, `ContactForm`; also `SiteRails` |
+| `contact.ts` | `ContactSection` → `ContactCard`; also `SiteRails` |
 | `navigation.ts` | `SiteHeader`, `SiteFooter` |
 
 All presentation components receive data as props — no component imports a `data/`
