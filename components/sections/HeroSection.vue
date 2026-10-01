@@ -8,10 +8,10 @@
  *                         the hero never loses its backdrop while the story
  *                         blocks scroll past
  *   z2  holder            absolute, first viewport only:
- *         ├ cut-out       absolute — the transparent foreground form
- *         ├ name          absolute, z1 — behind the cut-out, so the form crosses
- *         │               over the letters
- *         └ intro card    absolute, z3 — the frosted panel, pushed down 350px
+ *         ├ cut-out       absolute, z2 — the transparent foreground form
+ *         ├ name          absolute, z3 — in front of the cut-out, so the form
+ *         │               never crosses over the letters
+ *         └ intro card    absolute, z4 — the frosted panel, pushed down 350px
  *   z2  story blocks ×3   absolute at 180vh / 280vh / 380vh
  *
  * The reference achieves the same split with a `position: sticky` video for the
@@ -201,8 +201,8 @@ onMounted(() => {
 }
 
 // -----------------------------------------------------------------------------
-// First-viewport stack: cut-out → name → card, with the name *behind* the
-// cut-out so the form crosses over the letters.
+// First-viewport stack: cut-out → name → card, with the name *in front of* the
+// cut-out so the letters are never obscured by the form.
 // -----------------------------------------------------------------------------
 .hero__holder {
   position: absolute;
@@ -224,7 +224,7 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1;
+  z-index: 3;
 }
 
 .hero__title-text {
@@ -255,7 +255,7 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 3;
+  z-index: 4;
 }
 
 .hero__desc-text {
